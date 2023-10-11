@@ -23,8 +23,6 @@ function First() {
                 close || (
                     < div className='flex justify-center items-center'>
                         <section className='bg-[#fca5a5] w-auto max-w-[700px] py-4 px-10 h-auto rounded-xl flex space-x-6'>
-
-
                             <h1 className={`${manrope.className} text-xl  text-center`}>Notice: Exam is postponed to 24th June 2024  </h1>
                             {/* Close icon */}
                             <Image
