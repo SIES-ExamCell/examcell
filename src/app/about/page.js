@@ -23,7 +23,7 @@ function page() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7 }}
-                className='mx-28 mt-20'>
+                className='mx-10 md:mx-28 mt-20'>
 
                 <div className={`${raleway.className} `}>
                     <h1 className=' text-2xl  lg:text-4xl font-semibold tracking-wide '>About us</h1>
