@@ -23,11 +23,10 @@ const manrope = Manrope({
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
 
-  // Simulate a loading delay, replace this with your actual data loading process
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 2000); // Change 2000 to your desired loading time
+    }, 1000); 
   }, []);
 
   return (
