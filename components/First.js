@@ -42,7 +42,7 @@ function First() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7 }}
-                className='lg:flex-row flex-col flex justify-center lg:justify-normal items-center space-y-4 md:space-y-12 lg:space-x-32 lg:space-y-20  lg:mx-28 mx-10 mt-10 lg:mt-20'>
+                className='lg:flex-row flex-col flex justify-center lg:justify-normal items-center space-y-4 md:space-y-12 lg:space-x-32 lg:space-y-20  lg:mx-28 mx-10 mt-10 lg:mt-10'>
 
                 <div className='hidden lg:flex lg:w-1/2'>
                     <Image
