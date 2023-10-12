@@ -32,28 +32,28 @@ function page() {
                 {/* List of dept */}
              
                 <div className='mt-16 grid grid-cols-4 gap-10'>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>PPT</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>CE</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>ECS</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>EXTC</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>AIDS</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>AIML</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>MECH</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>IOT</h1>
                     </Link>
                 </div>
@@ -63,28 +63,28 @@ function page() {
                 </div>
                 {/* List of dept */}
                 <div className='mt-16 grid grid-cols-4 gap-10 my-20'>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>PPT</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>CE</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>ECS</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>EXTC</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>AIDS</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>AIML</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>MECH</h1>
                     </Link>
-                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300'>
+                    <Link href='/result' className='flex justify-center items-center md:w-[200px] md:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out  hover:-translate-y-1 hover:scale-110 duration-300'>
                         <h1 className={`${manrope.className} text-center text-3xl `}>IOT</h1>
                     </Link>
                 </div>

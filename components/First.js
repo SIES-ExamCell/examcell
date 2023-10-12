@@ -21,9 +21,9 @@ function First() {
         {/* Homepage Dismissable notification */}
             {
                 close || (
-                    < div className='flex justify-center items-center'>
+                    <div className='flex justify-center items-center p-10 md:p-0'>
                         <section className='bg-[#fca5a5] w-auto max-w-[700px] py-4 px-10 h-auto rounded-xl flex space-x-6'>
-                            <h1 className={`${manrope.className} text-xl  text-center`}>Notice: Exam is postponed to 24th June 2024  </h1>
+                            <h1 className={`${manrope.className} text-xl text-left md:text-center`}>Notice: Exam is postponed to 24th June 2024  </h1>
                             {/* Close icon */}
                             <Image
                                 src="/close.png"
@@ -62,9 +62,9 @@ function First() {
                         className='object-contain'
                     />
                 </div>
-                <div className={`${raleway.className} lg:w-1/2 lg:space-y-12 space-y-3 `}>
-                    <h1 className='text-2xl md:text-5xl lg:text-6xl font-bold tracking-wide'>SIES GST Examcell</h1>
-                    <h1 className='text-lg md:text-2xl lg:text-2xl font-normal'>Examination Cell of SIESGST functions as per the guidelines provided by Controller of Examination of UoM.</h1>
+                <div className={`${raleway.className} lg:w-1/2 lg:space-y-12 space-y-3 text-center`}>
+                    <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold tracking-wide'>SIES GST Examcell</h1>
+                    <h1 className='text-xl md:text-2xl lg:text-2xl font-normal '>Examination Cell of SIESGST functions as per the guidelines provided by Controller of Examination of UoM.</h1>
                 </div>
             </motion.div>
         </>
