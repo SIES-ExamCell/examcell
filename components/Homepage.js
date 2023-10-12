@@ -3,6 +3,8 @@ import Navbar from './Navbar'
 import First from './First'
 import Second from './Second'
 import Third from './Third'
+import Fourth from './Fourth'
+import Footer from './Footer'
 
 function Homepage() {
   return (
@@ -10,7 +12,9 @@ function Homepage() {
         <Navbar />
         <First />
         <Second />
-        {/* <Third /> */}
+        <Third />
+        <Fourth />
+        <Footer />
     </div>
   )
 }

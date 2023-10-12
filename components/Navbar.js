@@ -5,7 +5,6 @@ import { Inter, Manrope, Raleway } from 'next/font/google';
 import { motion } from "framer-motion"
 import Head from 'next/head';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 const raleway = Raleway({
@@ -35,23 +34,8 @@ function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(true)
   const [menu, setMenu] = useState(false)
   return (
-    // <div className='w-screen h-[200px] bg-[#e2e8f0] flex space-x-4 items-center mx-10'>
     <div className='w-screen '>
-      {/*
-             <Image
-                src='/logo.png'
-                width={200}
-                height={200}
-                alt="logo icon"
-            />
-            <div className='flex space-x-4 w-screen'>
-                <h1 className={`${raleway.className} text-2xl tracking-wide font-semibold md:text-lg text-center `}>Home</h1>
-                <h1 className={`${raleway.className} text-2xl tracking-wide font-semibold md:text-lg text-center `}>About us</h1>
-                <h1 className={`${raleway.className} text-2xl tracking-wide font-semibold md:text-lg text-center `}>Notifications</h1>
-                <h1 className={`${raleway.className} text-2xl tracking-wide font-semibold md:text-lg text-center `}>Result</h1>
-                <h1 className={`${raleway.className} text-2xl tracking-wide font-semibold md:text-lg text-center `}>Exam Time table</h1>
-                <h1 className={`${raleway.className} text-2xl tracking-wide font-semibold md:text-lg text-center `}>Hall Tickets</h1>
-            </div> */}
+  
 
       <Head>
         <title>Examcell SIES GST</title>
@@ -62,7 +46,7 @@ function Navbar() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
-        className=' flex md:justify-center justify-evenly items-center space-x-12 md:p-10 md:ml-20 md:mr-20'>
+        className=' flex xl:justify-center justify-evenly items-center space-x-12 xl:p-10 xl:ml-20 xl:mr-20'>
         <div className={`${raleway.className} cursor-pointer transition ease-in-out  hover:-translate-y-2 hover:scale-105 duration-300`} >
           <Image
             src='/logo.png'
@@ -75,7 +59,7 @@ function Navbar() {
             (
               <motion.div
                 whileTap={{ scale: 0.97 }}
-                className='md:hidden object-contain rounded-full p-4 ' onClick={() => setMenu(false)}>
+                className='xl:hidden object-contain rounded-full p-4 ' onClick={() => setMenu(false)}>
                 <Image
                   src="/close.png"
                   width={20}
@@ -95,7 +79,7 @@ function Navbar() {
                 }}
                 whileTap={{ scale: 0.9 }}
                 whileInView={{ opacity: 1 }}
-                className='md:hidden object-contain rounded-full p-4 ' onClick={() => setMenu(true)}>
+                className='xl:hidden object-contain rounded-full p-4 ' onClick={() => setMenu(true)}>
                 <Image
                   src="/menu.png"
                   width={20}
@@ -106,7 +90,7 @@ function Navbar() {
               </motion.div>
             )
         }
-        <div className={`${manrope.className} hidden md:flex md:justify-evenly md:items-center md:font-medium md:w-92 space-x-12`}>
+        <div className={`${manrope.className} hidden xl:flex xl:justify-evenly xl:items-center xl:font-medium xl:w-92 space-x-12`}>
           <Link href='/' className='transition ease-in  hover:text-gray-300 text-gray-500 duration-300 cursor-pointer '>Home</Link>
           <Link href='/about' className=' transition ease-in  hover:text-gray-300  text-gray-500 duration-300 cursor-pointer'>About us</Link>
           <Link href='/notifications' className=' transition ease-in  hover:text-gray-300  text-gray-500 duration-300 cursor-pointer'>Notifications</Link>
@@ -170,4 +154,4 @@ function Navbar() {
   )
 }
 
-export default Navbar
+export default Navbar 
