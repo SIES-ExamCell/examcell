@@ -47,13 +47,13 @@ function Navbar() {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
         className=' flex xl:justify-center justify-evenly items-center space-x-12 xl:p-10 xl:ml-20 xl:mr-20'>
-        <div className={`${raleway.className} cursor-pointer transition ease-in-out  hover:-translate-y-2 hover:scale-105 duration-300`} >
+        <Link href='/' className={`${raleway.className} cursor-pointer transition ease-in-out  hover:-translate-y-2 hover:scale-105 duration-300`} >
           <Image
             src='/logo.png'
             width={200}
             height={200}
             alt="logo icon"
-          />        </div>
+          />        </Link>
         {
           menu ?
             (
