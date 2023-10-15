@@ -43,6 +43,9 @@ function Footer() {
             <Link href="/sample-question-papers" >
               <h1 className={`${manrope.className} text-lg font-normal  hover:text-blue-600 hover:ease-in-out hover:duration-300`}>Sample Question Papers</h1>
             </Link>
+            <Link href="/faculty-login" >
+              <h1 className={`${manrope.className} text-lg font-normal  hover:text-blue-600 hover:ease-in-out hover:duration-300`}>Faculty Login</h1>
+            </Link>
           </div>
 
           <div className='flex flex-col text-left space-y-4'>
