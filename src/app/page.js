@@ -4,6 +4,7 @@ import { Inter, Manrope, Raleway } from 'next/font/google';
 import Homepage from '../../components/Homepage';
 import { JellyTriangle } from '@uiball/loaders'
 import { useEffect, useState } from 'react';
+import { AuthContext } from "../../contexts/AuthContext"
 
 const raleway = Raleway({
   weight: ['400', '500', '600', '700', '800'],

@@ -1,5 +1,5 @@
 import { getApp, getApps, initializeApp } from "firebase/app"
-import { getFirestore, collection, getDocs } from 'firebase/firestore'
+import { getFirestore } from 'firebase/firestore'
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
@@ -12,6 +12,7 @@ const firebaseConfig = {
     appId: process.env.appId,
     measurementId: process.env.measurementId
 };
+
 
 const app = getApps().length ? getApp() : initializeApp(firebaseConfig)
 const db = getFirestore(app)
