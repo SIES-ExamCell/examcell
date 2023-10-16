@@ -1,8 +1,6 @@
 "use client"
 
-import Image from 'next/image'
 import { Inter, Manrope, Raleway } from 'next/font/google';
-import { motion } from "framer-motion"
 import Homepage from '../../components/Homepage';
 import { JellyTriangle } from '@uiball/loaders'
 import { useEffect, useState } from 'react';
@@ -21,23 +19,29 @@ const manrope = Manrope({
 });
 
 export default function Home() {
+
   const [isLoading, setIsLoading] = useState(true);
+  const [admin, setAdmin] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 1000); 
+    }, 1000);
   }, []);
 
   return (
-    <div className='w-screen h-screen bg-white'>
-      {isLoading ? (
-        <div className="flex items-center justify-center w-screen h-screen">
-          <JellyTriangle color="black" size={100} />
-        </div>
-      ) : (
-        <Homepage />
-      )}
-    </div>
+    <AuthContext.Provider value={{ admin, setAdmin }}>
+      <div className='w-screen h-screen bg-white'>
+        {isLoading ? (
+          <div className="flex items-center justify-center w-screen h-screen">
+            <JellyTriangle color="black" size={100} />
+          </div>
+        ) : (
+          <Homepage />
+        )}
+      </div>
+    </AuthContext.Provider>
+
   );
 }
+

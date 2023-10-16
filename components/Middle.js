@@ -6,22 +6,17 @@ import { Manrope, Raleway } from 'next/font/google';
 
 
 const raleway = Raleway({
-    weight: ['400', '700'],
-    subsets: ['latin'],
+  weight: ['400', '700'],
+  subsets: ['latin'],
 });
 const manrope = Manrope({
-    weight: ['400', '700'],
-    subsets: ['latin'],
+  weight: ['400', '700'],
+  subsets: ['latin'],
 });
-// import POSTS from '../../assets/posts.png';
-// import { EngagementContext } from "../../Contexts/EngagementContext";
-// import { UserContext } from '../../Contexts/UserContext';
 
-function Middle() {
 
-//   const { MANAGER, SETMANAGER } = useContext(UserContext);
+function Middle({ user }) {
 
-//   const { show, setShow, data, IMG, userDetails } = useContext(EngagementContext);
 
 
 
@@ -30,9 +25,8 @@ function Middle() {
 
       {/* Welcome user */}
       <div className='mt-5'>
-        {/* <h1 className='text-4xl font-medium'>Hello, {userDetails.name}</h1> */}
         <h1 className={`${raleway.className} text-4xl font-medium`}>Admin Dashboard</h1>
-        <h3 className={`${raleway.className}  text-lg mt-6 mb-6 text-gray-500`}>Welcome Back !</h3>
+        <h3 className={`${raleway.className}  text-lg mt-6 mb-6 text-gray-500`}>Welcome Back!</h3>
       </div>
 
 

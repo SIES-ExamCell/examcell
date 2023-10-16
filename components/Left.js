@@ -1,24 +1,24 @@
 "use client"
 
+import { signOut } from 'next-auth/react'
 import Link from 'next/link'
-import React, { useContext, useState } from 'react'
-// import Project from '../../assets/achievement.png';
-// import Billing from '../../assets/bank.png';
-// import Influencer from '../../assets/user.png'
-// import Stats from '../../assets/bar-chart.png';
-// import Settings from '../../assets/gear.png';
-// import Manager from '../../assets/manager.png';
-// import Schedule from '../../assets/schedule.png';
-// import { EngagementContext } from "../../Contexts/EngagementContext";
-// import { UserContext } from '../../Contexts/UserContext';
+import React from 'react'
+import { Manrope, Raleway } from 'next/font/google';
 
+const raleway = Raleway({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+});
+const manrope = Manrope({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+});
 function Left() {
 
 
-    //   const { show, setShow, data, media, userDetails } = useContext(EngagementContext);
 
     return (
-        <div className='flex items-center flex-col mt-28  min-w-[200px]'>
+        <div className={`${raleway.className} flex items-center flex-col mt-28  min-w-[200px]`}>
 
             <div className='flex justify-center items-center ml-6 mb-72'>
                 <div className='flex flex-col justify-center items-center space-y-8'>
@@ -45,6 +45,9 @@ function Left() {
                     </div>
                     <div className='mt-2 mr-4 hover:cursor-pointer'>
                         <img src="./settings.png" alt="Settings" className='w-6 h-6 object-contain' />
+                    </div>
+                    <div className='mt-2 mr-4 hover:cursor-pointer'>
+                        <img src="./logout.png" alt="logout" className='w-6 h-6 object-contain' />
                     </div>
                 </div>
 
@@ -84,6 +87,11 @@ function Left() {
                             <h1>Settings</h1>
                         </div>
                     </Link>
+                    <div onClick={()=> signOut()}>
+                        <div className='hover:cursor-pointer'>
+                            <h1>Logout</h1>
+                        </div>
+                    </div>
 
                 </div>
             </div>
