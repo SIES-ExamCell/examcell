@@ -4,7 +4,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import Left from '../../../components/Left';
 import Middle from '../../../components/Middle';
 import { authGuard } from "../../../auth"
-import { AuthContext } from "../../../contexts/AuthContext"
+// import { AuthContext } from "../../../contexts/AuthContext"
 
 function page() {
 
@@ -12,9 +12,9 @@ function page() {
   //   authGuard();
   // }, []);
 
-  const { admin, setAdmin } = useContext(AuthContext);
+  // const { admin, setAdmin } = useContext(AuthContext);
 
-  console.log(admin)
+  // console.log(admin)
   return (
     <div className='flex bg-gray-100'>
       <Left className='flex-none' />

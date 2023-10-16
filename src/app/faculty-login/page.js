@@ -8,7 +8,7 @@ import { Inter, Raleway } from 'next/font/google';
 import { collection, getDocs, query, where } from 'firebase/firestore'
 import { db } from "../../../firebase"
 import { useRouter } from 'next/navigation';
-import { AuthContext } from "../../../contexts/AuthContext"
+// import { AuthContext } from "../../../contexts/AuthContext"
 
 
 const raleway = Raleway({
@@ -27,7 +27,7 @@ function page() {
   const [username, setUsername] = useState(null)
   const [password, setPassword] = useState(null)
 
-  const { admin, setAdmin } = useContext(AuthContext);
+  // const { admin, setAdmin } = useContext(AuthContext);
 
   const notifySuccess = () => toast.success('Logged in successfully', {
     position: "top-right",

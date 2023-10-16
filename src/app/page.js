@@ -31,7 +31,7 @@ export default function Home() {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ admin, setAdmin }}>
+    // <AuthContext.Provider value={{ admin, setAdmin }}>
       <div className='w-screen h-screen bg-white'>
         {isLoading ? (
           <div className="flex items-center justify-center w-screen h-screen">
@@ -41,7 +41,7 @@ export default function Home() {
           <Homepage />
         )}
       </div>
-    </AuthContext.Provider>
+    // </AuthContext.Provider>
 
   );
 }
