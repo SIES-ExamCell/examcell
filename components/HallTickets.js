@@ -1,11 +1,13 @@
 "use client"
 
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Manrope, Raleway } from 'next/font/google';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { db } from "../firebase"
+import { useRouter } from 'next/navigation';
+import { AuthContext } from '../contexts/AuthContext';
 
 
 const raleway = Raleway({
@@ -25,6 +27,16 @@ function HallTickets() {
   const [link, setLink] = useState()
   const [query, setQuery] = useState("")
   const [modal, setModal] = useState(false)
+
+  const { admin, setAdmin } = useContext(AuthContext);
+  
+  const router = useRouter();
+
+  useEffect(() => {
+      if (!admin) {
+        router.push('faculty-login');
+      }
+    }, [admin])
 
 
   var count = 1;

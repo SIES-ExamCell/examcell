@@ -2,8 +2,10 @@
 
 import { signOut } from 'next-auth/react'
 import Link from 'next/link'
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Manrope, Raleway } from 'next/font/google';
+import { AuthContext } from '../contexts/AuthContext';
+import { useRouter } from 'next/navigation';
 
 const raleway = Raleway({
   weight: ['400', '700'],
@@ -14,7 +16,14 @@ const manrope = Manrope({
   subsets: ['latin'],
 });
 function Left() {
+    const { admin, setAdmin } = useContext(AuthContext);
+    const router = useRouter();
 
+    useEffect(() => {
+        if (!admin) {
+          router.push('faculty-login');
+        }
+      }, [admin])
 
 
     return (
@@ -87,7 +96,7 @@ function Left() {
                             <h1>Settings</h1>
                         </div>
                     </Link>
-                    <div onClick={()=> signOut()}>
+                    <div onClick={()=> setAdmin(false) }>
                         <div className='hover:cursor-pointer'>
                             <h1>Logout</h1>
                         </div>

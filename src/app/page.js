@@ -22,7 +22,6 @@ const manrope = Manrope({
 export default function Home() {
 
   const [isLoading, setIsLoading] = useState(true);
-  const [admin, setAdmin] = useState(false)
 
   useEffect(() => {
     setTimeout(() => {
