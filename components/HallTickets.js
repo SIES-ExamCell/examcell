@@ -60,10 +60,10 @@ function HallTickets() {
       }
     }
 
-    else if(!link && department){
+    else if (!link && department) {
       notifyError('Missing link');
     }
-    else if(link && !department){
+    else if (link && !department) {
       notifyError('Missing department');
     }
     else {
@@ -117,10 +117,10 @@ function HallTickets() {
   }, [fetch]);
 
 
-  async function deleteITHallTicket(link) {
+  async function deleteHallTicket(hallTicket) {
     var answer = window.confirm("Delete Link for Hall Ticket?");
     if (answer) {
-      await deleteDoc(doc(db, "Information Technology", "2LsDGVjBe028dBfvCoKe", "hall-tickets", link.id));
+      await deleteDoc(doc(db, "hallTickets", hallTicket.id));
       window.location.reload();
     }
     else {
@@ -147,7 +147,7 @@ function HallTickets() {
       <div className='w-screen  flex mx-20 my-20'>
         <div className='flex flex-col'>
           <div className='flex flex-col space-y-5 mb-20'>
-       
+
             <h1 className={`${raleway.className} text-4xl font-bold`}>Create Links for Hall Tickets</h1>
 
             <input
@@ -185,26 +185,26 @@ function HallTickets() {
               <h1 className='w-72 text-left mr-12 ml-10'>Dept</h1>
               <h1 className='w-72 text-left mr-12 ml-10'>Links</h1>
             </div>
+            {
+              hallTicketsObj.map((hallTicket) => (
+                <div className="flex justify-around items-center  cursor-pointer " >
+                  <div className='w-12 text-center mr-12'>
+                    <h1>{count++}</h1>
+                  </div>
+                  <div className='flex justify-center items-center w-64'>
+                    <div className='flex flex-col items-center '>
+                      <h1 className='text-left text-lg w-44 font-bold'>{hallTicket.dept}</h1>
+                    </div>
+                  </div>
+                  <div className='flex flex-col justify-center items-center '>
 
-            <div className="flex justify-around items-center  cursor-pointer " >
-              <div className='w-12 text-center mr-12'>
-                <h1>1</h1>
-              </div>
-              <div className='flex justify-center items-center w-64'>
-                <div className='flex flex-col items-center '>
-                  <h1 className='text-left text-lg w-44 font-bold'>Computer Engineering</h1>
-                </div>
-              </div>
-              <div className='flex flex-col justify-center items-center '>
 
-                {
-                  hallTicketsObj.map((hallTicket) => (
                     <div className='flex justify-evenly items-center my-10'>
                       <div className='flex flex-col items-center '>
                         <h1 className='text-left text-lg w-44 font-bold'>{hallTicket.link}</h1>
                       </div>
                       <div className='flex justify-around items-center w-[400px]'>
-                        <div className=' w-32 flex justify-around items-center cursor-pointer' onClick={() => deleteHallTicket(link)}>
+                        <div className=' w-32 flex justify-around items-center cursor-pointer' onClick={() => deleteHallTicket(hallTicket)}>
                           <img src='./delete.png' alt="remove" className='w-5 h-5 ' />
                           <h1>Delete Link</h1>
                         </div>
@@ -215,11 +215,11 @@ function HallTickets() {
                       </div>
                     </div>
 
-                  ))
-                }
-              </div>
-            </div>
-    
+                  </div>
+                </div>
+              ))
+            }
+
           </div >
 
         </div>
