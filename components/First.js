@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { motion } from "framer-motion"
 import { Manrope, Raleway } from 'next/font/google';
 import Image from 'next/image';
+import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import { db } from "../firebase"
+
 
 const raleway = Raleway({
     weight: ['400', '700'],
@@ -15,15 +18,44 @@ const manrope = Manrope({
 function First() {
 
     const [close, setClose] = useState(false)
+    const [notificationsObj, setNotificationsObj] = useState([])
+    const lastNoticeDesc = ''
+    const [fetch, setFetch] = useState(false)
+
+
+    useEffect(() => {
+        if (!fetch) {
+            const fetchNotificationsObj = async () => {
+                const querySnapshot = await getDocs(collection(db, 'notifications'));
+                const fetchedNotifications = [];
+
+                querySnapshot.forEach((doc) => {
+                    fetchedNotifications.push({ id: doc.id, desc: doc.data().desc });
+                });
+
+                setNotificationsObj(fetchedNotifications);
+                setFetch(true);
+
+            };
+
+            fetchNotificationsObj();
+        }
+    }, [fetch]);
 
     return (
         <>
-        {/* Homepage Dismissable notification */}
+            {/* Homepage Dismissable notification */}
             {
                 close || (
                     <div className='flex justify-center items-center p-10 md:p-0 md:mt-10'>
                         <section className='bg-[#fca5a5] w-auto max-w-[700px] py-4 px-10 h-auto rounded-xl flex space-x-6'>
-                            <h1 className={`${manrope.className} text-xl text-left md:text-center`}>Notice: Exam is postponed to 24th June 2024  </h1>
+
+
+                            {notificationsObj.length > 0 && (
+                                <h1 className={`${manrope.className} text-xl text-left md:text-center`}>
+                                    Notice: {notificationsObj[0].desc}
+                                </h1>
+                            )}
                             {/* Close icon */}
                             <Image
                                 src="/close.png"
