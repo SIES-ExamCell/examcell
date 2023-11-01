@@ -14,7 +14,10 @@ function Page() {
 
 
   useEffect(() => {
-    if (!admin) {
+
+    const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+    if (!isAdmin) {
       router.push('faculty-login');
     } else {
       setLoading(false);

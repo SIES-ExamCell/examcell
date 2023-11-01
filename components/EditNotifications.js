@@ -32,11 +32,12 @@ function EditNotifications() {
 
   const router = useRouter();
 
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   useEffect(() => {
-      if (!admin) {
-        router.push('faculty-login');
-      }
-    }, [admin])
+    if (!isAdmin) {
+      router.push('faculty-login');
+    }
+  }, [isAdmin])
 
   const notifySuccess = () => toast.success('Created notification successfully', {
     position: "top-right",

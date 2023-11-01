@@ -27,16 +27,16 @@ function HallTickets() {
   const [link, setLink] = useState()
   const [query, setQuery] = useState("")
   const [modal, setModal] = useState(false)
-
-  const { admin, setAdmin } = useContext(AuthContext);
   
   const router = useRouter();
 
+
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
   useEffect(() => {
-      if (!admin) {
-        router.push('faculty-login');
-      }
-    }, [admin])
+    if (!isAdmin) {
+      router.push('faculty-login');
+    }
+  }, [isAdmin])
 
 
   var count = 1;
@@ -212,7 +212,7 @@ function HallTickets() {
 
                     <div className='flex justify-evenly items-center my-10'>
                       <div className='flex flex-col items-center '>
-                        <h1 className='text-left text-lg w-44 font-bold'>{hallTicket.link}</h1>
+                        <h1 className='text-left text-lg w-44 font-bold truncate '>{hallTicket.link}</h1>
                       </div>
                       <div className='flex justify-around items-center w-[400px]'>
                         <div className=' w-32 flex justify-around items-center cursor-pointer' onClick={() => deleteHallTicket(hallTicket)}>

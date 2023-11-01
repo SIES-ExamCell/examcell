@@ -8,22 +8,25 @@ import { AuthContext } from '../contexts/AuthContext';
 import { useRouter } from 'next/navigation';
 
 const raleway = Raleway({
-  weight: ['400', '700'],
-  subsets: ['latin'],
+    weight: ['400', '700'],
+    subsets: ['latin'],
 });
 const manrope = Manrope({
-  weight: ['400', '700'],
-  subsets: ['latin'],
+    weight: ['400', '700'],
+    subsets: ['latin'],
 });
 function Left() {
     const { admin, setAdmin } = useContext(AuthContext);
     const router = useRouter();
 
     useEffect(() => {
-        if (!admin) {
-          router.push('faculty-login');
+
+        const isAdmin = localStorage.getItem("isAdmin") === "true";
+
+        if (!isAdmin) {
+            router.push('faculty-login');
         }
-      }, [admin])
+    }, [])
 
 
     return (
@@ -96,7 +99,10 @@ function Left() {
                             <h1>Settings</h1>
                         </div>
                     </Link>
-                    <div onClick={()=> setAdmin(false) }>
+                    <div onClick={() => {
+                        router.push('faculty-login');
+                        localStorage.setItem("isAdmin", "false")
+                    }}>
                         <div className='hover:cursor-pointer'>
                             <h1>Logout</h1>
                         </div>

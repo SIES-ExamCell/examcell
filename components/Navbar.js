@@ -38,7 +38,7 @@ function Navbar() {
   
 
       <Head>
-        <title>Examcell SIES</title>
+        <title>Examcell SIES GST</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta property="og:title" content="My page title" key="title" />
       </Head>
