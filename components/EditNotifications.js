@@ -40,7 +40,7 @@ function EditNotifications() {
       if (!isAdmin) {
           router.push('faculty-login');
       }
-  }, [isAdmin])
+  }, [])
 
   const notifySuccess = () => toast.success('Created notification successfully', {
     position: "top-right",

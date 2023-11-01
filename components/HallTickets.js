@@ -39,7 +39,7 @@ function HallTickets() {
       if (!isAdmin) {
           router.push('faculty-login');
       }
-  }, [isAdmin])
+  }, [])
 
 
   var count = 1;

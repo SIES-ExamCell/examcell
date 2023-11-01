@@ -22,7 +22,7 @@ function Page() {
     } else {
       setLoading(false);
     }
-  }, [isAdmin])
+  }, [])
 
 
   return (

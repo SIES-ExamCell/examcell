@@ -24,7 +24,7 @@ function Middle() {
       if (!isAdmin) {
           router.push('faculty-login');
       }
-  }, [isAdmin])
+  }, [])
 
 
   return (
