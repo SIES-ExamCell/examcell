@@ -67,7 +67,7 @@ function Footer() {
       </div>
 
       {/* Social Media Links */}
-      <div className='flex justify-center items-center space-x-10 py-20'>
+      {/* <div className='flex justify-center items-center space-x-10 py-20'>
         <a href='https://www.instagram.com/siesgstevents/?hl=en' className={`${raleway.className} cursor-pointer transition ease-in-out  hover:-translate-y-2 hover:scale-105 duration-300`} >
           <Image
             src='/instagram.png'
@@ -92,7 +92,7 @@ function Footer() {
             alt="linkedin icon"
           />
         </a>
-      </div>
+      </div> */}
 
 
     </div>
