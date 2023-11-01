@@ -1,7 +1,6 @@
 import React from 'react';
 import { Inter, Manrope, Raleway } from 'next/font/google';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const raleway = Raleway({
   weight: ['400', '500', '600', '700', '800'],
@@ -18,7 +17,7 @@ const manrope = Manrope({
 
 function Footer() {
   return (
-    <div className="bg-[#312e81] text-white  pt-32 ">
+    <div className="bg-[#312e81] text-white  pt-32 md:py-20">
 
       <div className='flex flex-col md:flex-row md:justify-evenly md:items-center'>
 
