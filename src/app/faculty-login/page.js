@@ -100,7 +100,9 @@ function page() {
       } else {
         notifySuccess();
         setAdmin(true)
-        localStorage.setItem("isAdmin", "true");
+        if (typeof window !== 'undefined') {
+          localStorage.setItem("isAdmin", "true");
+        }
 
         router.push("/admin-page");
       }

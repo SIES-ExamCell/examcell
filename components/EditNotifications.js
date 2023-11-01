@@ -32,7 +32,10 @@ function EditNotifications() {
 
   const router = useRouter();
 
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  var isAdmin = ''
+  if (typeof window !== 'undefined') {
+    isAdmin = localStorage.getItem("isAdmin") === "true";
+  }
   useEffect(() => {
     if (!isAdmin) {
       router.push('faculty-login');
@@ -152,7 +155,7 @@ function EditNotifications() {
           </div>
 
           <div className={`${manrope.className} select-none flex flex-col justify-center items-center space-y-12 mt-5 bg-[#c4b5fd] p-10 text-black rounded-lg`} >
-          <div className='flex items-center w-full font-bold text-lg'>
+            <div className='flex items-center w-full font-bold text-lg'>
               <h1 className='w-12 mr-14'>Sr.No.</h1>
               <h1 className='w-72 text-left mr-12 ml-10'>Description</h1>
               <h1 className=''>Actions</h1>

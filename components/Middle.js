@@ -16,7 +16,10 @@ const manrope = Manrope({
 
 
 function Middle() {
-  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  var isAdmin = ''
+  if (typeof window !== 'undefined') {
+    isAdmin = localStorage.getItem("isAdmin") === "true";
+  }
   useEffect(() => {
     if (!isAdmin) {
       router.push('faculty-login');

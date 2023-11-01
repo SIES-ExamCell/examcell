@@ -17,11 +17,14 @@ const manrope = Manrope({
 
 function page() {
     const departmentList = ['PPT', 'CE', 'ECS', 'EXTC', 'AIDS', 'AIML', 'MECH', 'IOT'];
-    const isAdmin = localStorage.getItem("isAdmin") === "true";
+    var isAdmin = ''
+    if (typeof window !== 'undefined') {
+        isAdmin = localStorage.getItem("isAdmin") === "true";
+    }
     useEffect(() => {
-      if (!isAdmin) {
-        router.push('faculty-login');
-      }
+        if (!isAdmin) {
+            router.push('faculty-login');
+        }
     }, [isAdmin])
     return (
         <>

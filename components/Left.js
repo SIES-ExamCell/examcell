@@ -101,7 +101,10 @@ function Left() {
                     </Link>
                     <div onClick={() => {
                         router.push('faculty-login');
-                        localStorage.setItem("isAdmin", "false")
+
+                        if (typeof window !== 'undefined') {
+                            localStorage.setItem("isAdmin", "false")
+                        }
                     }}>
                         <div className='hover:cursor-pointer'>
                             <h1>Logout</h1>
