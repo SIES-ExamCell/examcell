@@ -25,6 +25,7 @@ function HallTickets() {
   const [hallTicketsObj, setHallTicketsObj] = useState([])
   const [fetch, setFetch] = useState(false)
   const [link, setLink] = useState()
+  const [linkName, setLinkName] = useState()
   const [query, setQuery] = useState("")
   const [modal, setModal] = useState(false)
   
@@ -56,16 +57,18 @@ function HallTickets() {
   ]
 
   const addLinks = async () => {
-    if (link && department) {
+    if (link && department && linkName) {
 
       try {
         const docRef = await addDoc(collection(db, "hallTickets"), {
           link: link,
           dept: department,
+          linkName: linkName,
         });
 
         notifySuccess('Created Link for hall tickets successfully');
         setLink('');
+        setLinkName('');
         setDepartment(null);
         setFetch(false);
         window.location.reload();
@@ -119,7 +122,7 @@ function HallTickets() {
         const fetchedHallTickets = [];
 
         querySnapshot.forEach((doc) => {
-          fetchedHallTickets.push({ id: doc.id, link: doc.data().link, dept: doc.data().dept });
+          fetchedHallTickets.push({ id: doc.id, link: doc.data().link,  linkName: doc.data().linkName, dept: doc.data().dept });
         });
 
         setHallTicketsObj(fetchedHallTickets);
@@ -169,14 +172,23 @@ function HallTickets() {
               value={link}
               type="text"
               placeholder="https://siesgst.edu.in/"
-              className="placeholder:text-gray-400 px-5 py-2 Uoutline-none border border-gray-800 w-96"
+              className="placeholder:text-gray-400 px-5 py-2 outline-none border border-gray-800 w-96"
+            />
+            <h1 className={`${raleway.className} text-4xl font-bold`}>Enter Name for the Link</h1>
+
+            <input
+              onChange={(e) => setLinkName(e.target.value)}
+              value={linkName}
+              type="text"
+              placeholder="sem-5-hall-tickets"
+              className="placeholder:text-gray-400 px-5 py-2 outline-none border border-gray-800 w-96"
             />
             <h1 className={`${raleway.className} text-4xl font-bold`}>Select Department</h1>
 
             <select
               value={department}
               onChange={handleDepartmentDropdown}
-              className="block w-full bg-white border border-gray-300 rounded-md py-2 px-4 leading-tight focus:outline-none focus:border-blue-500"
+              className="block w-[400px] bg-white border border-gray-800  py-2 px-4 leading-tight focus:outline-none focus:border-blue-500"
             >
               {departmentList.map((department, index) => (
                 <option key={index} value={department}>
@@ -195,9 +207,10 @@ function HallTickets() {
 
           <div className={`${manrope.className} select-none flex flex-col justify-center items-center space-y-12 mt-5 bg-[#c4b5fd] p-10 text-black rounded-lg`} >
             <div className='flex items-center w-full font-bold text-lg'>
-              <h1 className='w-12 mr-14'>Sr.No.</h1>
-              <h1 className='w-72 text-left mr-12 ml-10'>Dept</h1>
-              <h1 className='w-72 text-left mr-12 ml-10'>Links</h1>
+              <h1 className='w-12 mr-12'>Sr.No.</h1>
+              <h1 className='w-72 text-left'>Dept</h1>
+              <h1 className='w-64 text-left '>Links</h1>
+              <h1 className='w-64 text-left'>LinkName</h1>
             </div>
             {
               hallTicketsObj.map((hallTicket) => (
@@ -207,17 +220,18 @@ function HallTickets() {
                   </div>
                   <div className='flex justify-center items-center w-64'>
                     <div className='flex flex-col items-center '>
-                      <h1 className='text-left text-lg w-44 font-bold'>{hallTicket.dept}</h1>
+                      <h1 className='text-left text-lg w-72 font-bold'>{hallTicket.dept}</h1>
                     </div>
                   </div>
                   <div className='flex flex-col justify-center items-center '>
-
-
-                    <div className='flex justify-evenly items-center my-10'>
+                    <div className='flex justify-evenly items-center my-10 space-x-12'>
                       <div className='flex flex-col items-center '>
-                        <h1 className='text-left text-lg w-44 font-bold truncate '>{hallTicket.link}</h1>
+                        <h1 className='text-left text-lg w-52 font-bold truncate '>{hallTicket.link}</h1>
                       </div>
-                      <div className='flex justify-around items-center w-[400px]'>
+                      <div className='flex flex-col items-center'>
+                        <h1 className='text-left text-lg w-52 font-bold truncate '>{hallTicket.linkName}</h1>
+                      </div>
+                      <div className='flex justify-around items-center w-[250px] space-x-4'>
                         <div className=' w-32 flex justify-around items-center cursor-pointer' onClick={() => deleteHallTicket(hallTicket)}>
                           <img src='./delete.png' alt="remove" className='w-5 h-5 ' />
                           <h1>Delete Link</h1>
