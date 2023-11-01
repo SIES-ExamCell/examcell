@@ -9,20 +9,20 @@ import { JellyTriangle } from '@uiball/loaders'
 
 function Page() {
   const router = useRouter();
-  const { admin, setAdmin } = useContext(AuthContext);
   const [loading, setLoading] = useState(true);
 
+  let isAdmin = '';
 
   useEffect(() => {
 
-    const isAdmin = localStorage.getItem("isAdmin") === "true";
+    isAdmin = localStorage.getItem("isAdmin") === "true" || '';
 
     if (!isAdmin) {
       router.push('faculty-login');
     } else {
       setLoading(false);
     }
-  }, [admin])
+  }, [isAdmin])
 
 
   return (

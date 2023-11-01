@@ -21,7 +21,7 @@ function Left() {
 
     useEffect(() => {
 
-        const isAdmin = localStorage.getItem("isAdmin") === "true";
+        const isAdmin = localStorage.getItem("isAdmin") === "true" || '';
 
         if (!isAdmin) {
             router.push('faculty-login');
@@ -103,7 +103,7 @@ function Left() {
                         router.push('faculty-login');
 
                         if (typeof window !== 'undefined') {
-                            localStorage.setItem("isAdmin", "false")
+                            localStorage.setItem("isAdmin", "false") || ''
                         }
                     }}>
                         <div className='hover:cursor-pointer'>

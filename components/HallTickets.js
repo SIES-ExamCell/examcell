@@ -34,7 +34,7 @@ function HallTickets() {
   var isAdmin = ''
   useEffect(() => {
       if (typeof window !== 'undefined') {
-          isAdmin = localStorage.getItem("isAdmin") === "true";
+          isAdmin = localStorage.getItem("isAdmin") === "true" || '';
       }
       if (!isAdmin) {
           router.push('faculty-login');
