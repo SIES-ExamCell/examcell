@@ -33,13 +33,13 @@ function EditNotifications() {
   const router = useRouter();
 
   var isAdmin = ''
-  if (typeof window !== 'undefined') {
-    isAdmin = localStorage.getItem("isAdmin") === "true";
-  }
   useEffect(() => {
-    if (!isAdmin) {
-      router.push('faculty-login');
-    }
+      if (typeof window !== 'undefined') {
+          isAdmin = localStorage.getItem("isAdmin") === "true";
+      }
+      if (!isAdmin) {
+          router.push('faculty-login');
+      }
   }, [isAdmin])
 
   const notifySuccess = () => toast.success('Created notification successfully', {

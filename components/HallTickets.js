@@ -32,13 +32,13 @@ function HallTickets() {
 
 
   var isAdmin = ''
-  if (typeof window !== 'undefined') {
-    isAdmin = localStorage.getItem("isAdmin") === "true";
-  }
   useEffect(() => {
-    if (!isAdmin) {
-      router.push('faculty-login');
-    }
+      if (typeof window !== 'undefined') {
+          isAdmin = localStorage.getItem("isAdmin") === "true";
+      }
+      if (!isAdmin) {
+          router.push('faculty-login');
+      }
   }, [isAdmin])
 
 

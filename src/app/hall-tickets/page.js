@@ -18,14 +18,16 @@ const manrope = Manrope({
 function page() {
     const departmentList = ['PPT', 'CE', 'ECS', 'EXTC', 'AIDS', 'AIML', 'MECH', 'IOT'];
     var isAdmin = ''
-    if (typeof window !== 'undefined') {
-        isAdmin = localStorage.getItem("isAdmin") === "true";
-    }
     useEffect(() => {
+        if (typeof window !== 'undefined') {
+            isAdmin = localStorage.getItem("isAdmin") === "true";
+        }
         if (!isAdmin) {
             router.push('faculty-login');
         }
     }, [isAdmin])
+
+    
     return (
         <>
             <Navbar />
