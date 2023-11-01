@@ -39,7 +39,7 @@ function DepartmentProps({ params }) {
         const fetchedHallTickets = [];
 
         querySnapshot.forEach((doc) => {
-          fetchedHallTickets.push({ id: doc.id, link: doc.data().link, dept: doc.data().dept });
+          fetchedHallTickets.push({ id: doc.id, link: doc.data().link, linkName: doc.data().linkName, dept: doc.data().dept });
         });
 
         setHallTicketsObj(fetchedHallTickets);
@@ -59,7 +59,7 @@ function DepartmentProps({ params }) {
         {hallTicketsObj.map((hallTicket) => (
           hallTicket.dept === departmentDictionary[params.dept] && (
             <div className={`${manrope.className} mt-5`} key={hallTicket.id}>
-              <a href={hallTicket.link} className='text-lg hover:cursor-pointer hover:underline text-blue-600'>{hallTicket.link}</a>
+              <a href={hallTicket.link} className='text-lg hover:cursor-pointer hover:underline text-blue-600'>{hallTicket.linkName || hallTicket.link}</a>
             </div>
           )
         ))}

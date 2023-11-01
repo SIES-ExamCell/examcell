@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Manrope, Raleway } from 'next/font/google';
 import Navbar from '../../../components/Navbar';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const raleway = Raleway({
     weight: ['400', '700'],
@@ -16,16 +17,11 @@ const manrope = Manrope({
 });
 
 function page() {
+
+  const router = useRouter();
+
     const departmentList = ['PPT', 'CE', 'ECS', 'EXTC', 'AIDS', 'AIML', 'MECH', 'IOT'];
-    var isAdmin = ''
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            isAdmin = localStorage.getItem("isAdmin") === "true";
-        }
-        if (!isAdmin) {
-            router.push('faculty-login');
-        }
-    }, [isAdmin])
+
 
     
     return (
