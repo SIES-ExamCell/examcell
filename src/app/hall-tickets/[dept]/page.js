@@ -24,6 +24,7 @@ function DepartmentProps({ params }) {
   const departmentDictionary = {
     'PPT': 'Printing & Packaging Technology',
     'CE': 'Computer Engineering',
+    'IT': 'Information Technology',
     'ECS': 'Electronics & Computer Science',
     'EXTC': 'Electronics & Telecommunication',
     'AIDS': 'Artificial Intelligence and Data science',

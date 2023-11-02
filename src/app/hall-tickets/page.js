@@ -18,12 +18,12 @@ const manrope = Manrope({
 
 function page() {
 
-  const router = useRouter();
+    const router = useRouter();
 
-    const departmentList = ['PPT', 'CE', 'ECS', 'EXTC', 'AIDS', 'AIML', 'MECH', 'IOT'];
+    const departmentList = ['PPT', 'CE', 'IT', 'ECS', 'EXTC', 'AIDS', 'AIML', 'MECH', 'IOT'];
 
 
-    
+
     return (
         <>
             <Navbar />
@@ -39,7 +39,7 @@ function page() {
                     </h1>
                 </div>
                 {/* List of dept */}
-                <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+                <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
                     {departmentList.map((department) => (
                         <Link
                             key={department}
