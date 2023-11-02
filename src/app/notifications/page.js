@@ -22,6 +22,7 @@ function page() {
     const [query, setQuery] = useState("")
     const [modal, setModal] = useState(false)
     var count = 1;
+    const [linksObj, setLinksObj] = useState([])
 
 
     useEffect(() => {
@@ -42,6 +43,25 @@ function page() {
         }
     }, [fetch]);
 
+
+    useEffect(() => {
+        if (!fetch) {
+          const fetchImportantLinksObj = async () => {
+            const querySnapshot = await getDocs(collection(db, "importantLinks"));
+            const fetchedLinks = [];
+    
+            querySnapshot.forEach((doc) => {
+              fetchedLinks.push({ id: doc.id, link: doc.data().link , name: doc.data().name });
+            });
+    
+            setLinksObj(fetchedLinks);
+            setFetch(true);
+          }
+    
+          fetchImportantLinksObj();
+        }
+      }, [fetch]);
+
     return (
         <>
             <Navbar />
@@ -57,7 +77,12 @@ function page() {
 
                 {notificationsObj.map((notification) => (
                     <div className={`${manrope.className} mt-5`} key={notification.id}>
-                        <h1 className='text-lg hover:cursor-pointer hover:underline text-blue-600'>{notification.desc}</h1>
+                        <h1 className='text-lg hover:cursor-pointer  text-blue-600'>{notification.desc}</h1>
+                    </div>
+                ))}
+                {linksObj.map((link) => (
+                    <div className={`${manrope.className} mt-5`} key={link.id}>
+                        <a href={link.link} className='text-lg hover:cursor-pointer hover:underline text-blue-600'>{link.name}</a>
                     </div>
                 ))}
 
