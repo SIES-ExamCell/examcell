@@ -23,6 +23,7 @@ function ImportantLinks() {
   const [linksObj, setLinksObj] = useState([])
   const [fetch, setFetch] = useState(false)
   const [link, setLink] = useState("")
+  const [linkName, setLinkName] = useState("")
   const [query, setQuery] = useState("")
   const [modal, setModal] = useState(false)
   var count = 1;
@@ -53,9 +54,11 @@ function ImportantLinks() {
       try {
         await addDoc(collection(db, 'importantLinks'), {
           link: link,
+          name: linkName
         });
         notifySuccess('Created important Link successfully');
         setLink('');
+        setLinkName('');
         setFetch(false); 
       } catch (error) {
         notifyError('Something went wrong');
@@ -71,7 +74,7 @@ function ImportantLinks() {
         const fetchedLinks = [];
 
         querySnapshot.forEach((doc) => {
-          fetchedLinks.push({ id: doc.id, link: doc.data().link });
+          fetchedLinks.push({ id: doc.id, link: doc.data().link, name: doc.data().name });
         });
 
         setLinksObj(fetchedLinks);
@@ -119,12 +122,22 @@ function ImportantLinks() {
               placeholder="https://siesgst.edu.in/"
               className="placeholder:text-gray-400 px-5 py-2 outline-none border border-gray-800 w-96"
             />
+      
+            <h1 className={`${raleway.className} text-4xl font-bold`}>Enter name for the link</h1>
+
+            <input
+              onChange={(e) => setLinkName(e.target.value)}
+              value={linkName}
+              type="text"
+              placeholder="Exam Timetable update"
+              className="placeholder:text-gray-400 px-5 py-2 outline-none border border-gray-800 w-96"
+            />
 
             <div className='flex justify-center items-center w-96 bg-black text-white py-2'>
               <button type='submit' onClick={addLinks}>Submit</button>
             </div>
           </div>
-          <div className='w-[400px]'>
+          <div className='w-[500px]'>
             <h1 className={`${raleway.className} text-4xl font-bold`}>Existing Important Links</h1>
           </div>
 
@@ -132,6 +145,7 @@ function ImportantLinks() {
           <div className='flex items-center w-full font-bold text-lg'>
               <h1 className='w-12 mr-14'>Sr.No.</h1>
               <h1 className='w-72 text-left mr-12 ml-10'>Links</h1>
+              <h1 className='w-72 text-left mr-12 ml-10'>Link Name</h1>
               <h1 className=''>Actions</h1>
             </div>
 
@@ -143,13 +157,18 @@ function ImportantLinks() {
                   return link;
                 }
               }).map((link, index) => (
-                <div key={link.id} className="flex justify-around items-center  cursor-pointer " >
+                <div key={link.id} className="flex justify-around items-center " >
                   <div className='w-12 text-center mr-12'>
                     <h1>{count++}</h1>
                   </div>
                   <div className='flex justify-center items-center w-64'>
                     <div className='flex flex-col items-center '>
                       <h1 className='text-left text-lg w-44 font-bold'>{link.link}</h1>
+                    </div>
+                  </div>
+                  <div className='flex justify-center items-center w-64 ml-32'>
+                    <div className='flex flex-col items-center '>
+                      <h1 className='text-left text-lg w-44 font-bold'>{link.name}</h1>
                     </div>
                   </div>
 
