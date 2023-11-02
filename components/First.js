@@ -18,27 +18,27 @@ const manrope = Manrope({
 function First() {
 
     const [close, setClose] = useState(false)
-    const [notificationsObj, setNotificationsObj] = useState([])
+    const [bannersObj, setBannersObj] = useState([])
     const lastNoticeDesc = ''
     const [fetch, setFetch] = useState(false)
 
 
     useEffect(() => {
         if (!fetch) {
-            const fetchNotificationsObj = async () => {
-                const querySnapshot = await getDocs(collection(db, 'notifications'));
-                const fetchedNotifications = [];
+            const fetchBannersObj = async () => {
+                const querySnapshot = await getDocs(collection(db, 'banners'));
+                const fetchBanners = [];
 
                 querySnapshot.forEach((doc) => {
-                    fetchedNotifications.push({ id: doc.id, desc: doc.data().desc });
+                    fetchBanners.push({ id: doc.id, banner: doc.data().banner });
                 });
 
-                setNotificationsObj(fetchedNotifications);
+                setBannersObj(fetchBanners);
                 setFetch(true);
 
             };
 
-            fetchNotificationsObj();
+            fetchBannersObj();
         }
     }, [fetch]);
 
@@ -51,9 +51,9 @@ function First() {
                         <section className='bg-[#fca5a5] w-auto max-w-[700px] py-4 px-10 h-auto rounded-xl flex space-x-6'>
 
 
-                            {notificationsObj.length > 0 && (
+                            {bannersObj.length > 0 && (
                                 <h1 className={`${manrope.className} text-xl text-left md:text-center`}>
-                                    Notice: {notificationsObj[0].desc}
+                                    Notice: {bannersObj[0].banner}
                                 </h1>
                             )}
                             {/* Close icon */}

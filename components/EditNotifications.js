@@ -25,9 +25,12 @@ function EditNotifications() {
   const [notificationsObj, setNotificationsObj] = useState([])
   const [fetch, setFetch] = useState(false)
   const [notification, setNotification] = useState("")
+  const [banner, setBanner] = useState("")
+  const [bannersObj, setBannersObj] = useState([])
   const [query, setQuery] = useState("")
   const [modal, setModal] = useState(false)
-  var count = 1;
+  var notificationCount = 1;
+  var bannerCount = 1;
   const { admin, setAdmin } = useContext(AuthContext);
 
   const router = useRouter();
@@ -77,6 +80,20 @@ function EditNotifications() {
       }
     }
   };
+  const addBanner = async () => {
+    if (banner) {
+      try {
+        await addDoc(collection(db, 'banners'), {
+          banner: banner,
+        });
+        notifySuccess('Created banner successfully');
+        setBanner('');
+        setFetch(false); // Set fetch to false to trigger re-fetch of notifications
+      } catch (error) {
+        notifyError('Something went wrong');
+      }
+    }
+  };
 
   // async function addNotification(e) {
   //   await addDoc(collection(db, "influencers"), {
@@ -108,10 +125,38 @@ function EditNotifications() {
     }
   }, [fetch]);
 
+  useEffect(() => {
+    if (!fetch) {
+      const fetchBannersObj = async () => {
+        const querySnapshot = await getDocs(collection(db, "banners"));
+        const fetchBanners = [];
+
+        querySnapshot.forEach((doc) => {
+          fetchBanners.push({ id: doc.id, banner: doc.data().banner });
+        });
+
+        setBannersObj(fetchBanners);
+        setFetch(true);
+      }
+
+      fetchBannersObj();
+    }
+  }, [fetch]);
+
   async function deleteNotification(notification) {
     var answer = window.confirm("Delete Notification?");
     if (answer) {
       await deleteDoc(doc(db, "notifications", notification.id));
+      window.location.reload();
+    }
+    else {
+      return;
+    }
+  }
+  async function deleteBanner(banner) {
+    var answer = window.confirm("Delete Banner?");
+    if (answer) {
+      await deleteDoc(doc(db, "banners", banner.id));
       window.location.reload();
     }
     else {
@@ -136,6 +181,21 @@ function EditNotifications() {
       <div className='w-screen  flex mx-20 my-20'>
         <div className='flex flex-col'>
           <div className='flex flex-col space-y-5 mb-20'>
+            <h1 className={`${raleway.className} text-4xl font-bold`}>Create Banner on HomePage</h1>
+
+            <input
+              onChange={(e) => setBanner(e.target.value)}
+              value={banner}
+              type="text"
+              placeholder="Exam has been postponed"
+              className="placeholder:text-gray-400 px-5 py-2 outline-none border border-gray-800 w-96"
+            />
+
+            <div className='flex justify-center items-center w-96 bg-black text-white py-2'>
+              <button type='submit' onClick={addBanner}>Submit</button>
+            </div>
+          </div>
+          <div className='flex flex-col space-y-5 mb-20'>
             <h1 className={`${raleway.className} text-4xl font-bold`}>Create Notifications</h1>
 
             <input
@@ -151,10 +211,56 @@ function EditNotifications() {
             </div>
           </div>
           <div className='w-[400px]'>
+            <h1 className={`${raleway.className} text-4xl font-bold`}>Existing Banners</h1>
+          </div>
+
+          <div className={`${manrope.className} mb-20 select-none flex flex-col justify-center items-center space-y-12 mt-5 bg-[#c4b5fd] p-10 text-black rounded-lg`} >
+            <div className='flex items-center w-full font-bold text-lg'>
+              <h1 className='w-12 mr-14'>Sr.No.</h1>
+              <h1 className='w-72 text-left mr-12 ml-10'>Description</h1>
+              <h1 className=''>Actions</h1>
+            </div>
+
+            {
+              bannersObj.filter(banner => {
+                if (query === '') {
+                  return banner;
+                } else if (banner.name.toLowerCase().includes(query.toLowerCase())) {
+                  return banner;
+                }
+              }).map((banner, index) => (
+                <div key={banner.id} className="flex justify-around items-center " >
+                  <div className='w-12 text-center mr-12'>
+                    <h1>{bannerCount++}</h1>
+                  </div>
+                  <div className='flex justify-center items-center w-64'>
+                    <div className='flex flex-col items-center '>
+                      <h1 className='text-left text-lg w-44 font-bold'>{banner.banner}</h1>
+                    </div>
+                  </div>
+
+                  <div className='flex justify-around items-center w-[400px]'>
+                    <div className=' w-44 flex justify-around items-center cursor-pointer' onClick={() => deleteBanner(banner)}>
+                      <img src='./delete.png' alt="remove" className='w-5 h-5 ' />
+                      <h1>Delete Banner</h1>
+                    </div>
+                    <div className=' w-36 flex justify-around items-center cursor-pointer' onClick={() => setModal(true)}>
+                      <img src="./edit.png" alt="edit" className='w-5 h-5' />
+                      <h1>Edit Banner</h1>
+                    </div>
+                  </div>
+
+                </div>
+              ))
+            }
+          </div >
+
+
+          <div className='w-[400px]'>
             <h1 className={`${raleway.className} text-4xl font-bold`}>Existing Notifications</h1>
           </div>
 
-          <div className={`${manrope.className} select-none flex flex-col justify-center items-center space-y-12 mt-5 bg-[#c4b5fd] p-10 text-black rounded-lg`} >
+          <div className={`${manrope.className} flex flex-col justify-center items-center space-y-12 mt-5 bg-[#c4b5fd] p-10 text-black rounded-lg`} >
             <div className='flex items-center w-full font-bold text-lg'>
               <h1 className='w-12 mr-14'>Sr.No.</h1>
               <h1 className='w-72 text-left mr-12 ml-10'>Description</h1>
@@ -169,13 +275,13 @@ function EditNotifications() {
                   return notification;
                 }
               }).map((notification, index) => (
-                <div key={notification.id} className="flex justify-around items-center  cursor-pointer " >
+                <div key={notification.id} className="flex justify-around items-center " >
                   <div className='w-12 text-center mr-12'>
-                    <h1>{count++}</h1>
+                    <h1>{notificationCount++}</h1>
                   </div>
                   <div className='flex justify-center items-center w-64'>
                     <div className='flex flex-col items-center '>
-                      <h1 className='text-left text-lg w-44 font-bold'>{notification.desc}</h1>
+                      <h1 className='text-left text-lg w-44 font-bold select-auto'>{notification.desc}</h1>
                     </div>
                   </div>
 

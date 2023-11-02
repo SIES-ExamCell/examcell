@@ -25,10 +25,10 @@ function page() {
                 transition={{ duration: 0.7 }}
                 className='mx-10 md:mx-28 mt-20'>
 
-                <div className={`${raleway.className} `}>
-                    <h1 className=' text-2xl  lg:text-4xl font-semibold tracking-wide '>DSE sem III SH 2022 Theory Examination Timetable </h1>
+                <div className={`${manrope.className} text-center `}>
+                    <h1 className=' text-2xl  lg:text-4xl font-semibold tracking-wide p-10'>Launching soon...</h1>
                 </div>
-
+{/* 
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10 my-20">
                     <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-900 dark:text-gray-700">
@@ -135,7 +135,7 @@ function page() {
 
                         </tbody>
                     </table>
-                </div>
+                </div> */}
 
 
 
