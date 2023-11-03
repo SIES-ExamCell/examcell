@@ -46,8 +46,8 @@ function Navbar() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.7 }}
-        className=' flex xl:justify-center justify-evenly items-center space-x-12 xl:p-10 xl:ml-20 xl:mr-20'>
-        <Link href='/' className={`${raleway.className} cursor-pointer transition ease-in-out  hover:-translate-y-2 hover:scale-105 duration-300`} >
+        className=' flex xl:justify-center justify-evenly items-center space-x-12 p-10 xl:ml-20 xl:mr-20 '>
+        <Link href='/' className={`${raleway.className} cursor-pointer transition ease-in-out  hover:-translate-y-2 hover:scale-105 duration-300 w-44 md:w-auto xl:mb-8`} >
           <Image
             src='/logo.png'
             width={200}
