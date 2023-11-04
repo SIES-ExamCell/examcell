@@ -28,18 +28,18 @@ function HallTickets() {
   const [linkName, setLinkName] = useState()
   const [query, setQuery] = useState("")
   const [modal, setModal] = useState(false)
-  
+
   const router = useRouter();
 
 
   var isAdmin = ''
   useEffect(() => {
-      if (typeof window !== 'undefined') {
-          isAdmin = localStorage.getItem("isAdmin") === "true" || '';
-      }
-      if (!isAdmin) {
-          router.push('faculty-login');
-      }
+    if (typeof window !== 'undefined') {
+      isAdmin = localStorage.getItem("isAdmin") === "true" || '';
+    }
+    if (!isAdmin) {
+      router.push('faculty-login');
+    }
   }, [])
 
 
@@ -122,7 +122,7 @@ function HallTickets() {
         const fetchedHallTickets = [];
 
         querySnapshot.forEach((doc) => {
-          fetchedHallTickets.push({ id: doc.id, link: doc.data().link,  linkName: doc.data().linkName, dept: doc.data().dept });
+          fetchedHallTickets.push({ id: doc.id, link: doc.data().link, linkName: doc.data().linkName, dept: doc.data().dept });
         });
 
         setHallTicketsObj(fetchedHallTickets);
@@ -204,51 +204,63 @@ function HallTickets() {
           <div className='w-[400px]'>
             <h1 className={`${raleway.className} text-4xl font-bold`}>Existing Hall Tickets</h1>
           </div>
+          <div class="relative overflow-x-auto mt-10">
+            <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                  <th scope="col" class="px-6 py-3">
+                    Sr. No.
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Department
+                  </th>
+                  <th scope="col" class="px-6 py-3 w-20">
+                    Links
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Link Name
+                  </th>
+                  <th scope="col" class="px-6 py-3">
+                    Options
+                  </th>
+                </tr>
+              </thead>
+              {
+                hallTicketsObj.map((hallTicket) => (
 
-          <div className={`${manrope.className} select-none flex flex-col justify-center items-center space-y-12 mt-5 bg-[#c4b5fd] p-10 text-black rounded-lg`} >
-            <div className='flex items-center w-full font-bold text-lg'>
-              <h1 className='w-12 mr-12'>Sr.No.</h1>
-              <h1 className='w-72 text-left'>Dept</h1>
-              <h1 className='w-64 text-left '>Links</h1>
-              <h1 className='w-64 text-left'>LinkName</h1>
-            </div>
-            {
-              hallTicketsObj.map((hallTicket) => (
-                <div className="flex justify-around items-center  cursor-pointer " >
-                  <div className='w-12 text-center mr-12'>
-                    <h1>{count++}</h1>
-                  </div>
-                  <div className='flex justify-center items-center w-64'>
-                    <div className='flex flex-col items-center '>
-                      <h1 className='text-left text-lg w-72 font-bold'>{hallTicket.dept}</h1>
-                    </div>
-                  </div>
-                  <div className='flex flex-col justify-center items-center '>
-                    <div className='flex justify-evenly items-center my-10 space-x-12'>
-                      <div className='flex flex-col items-center '>
-                        <h1 className='text-left text-lg w-52 font-bold truncate '>{hallTicket.link}</h1>
-                      </div>
-                      <div className='flex flex-col items-center'>
-                        <h1 className='text-left text-lg w-52 font-bold truncate '>{hallTicket.linkName}</h1>
-                      </div>
-                      <div className='flex justify-around items-center w-[250px] space-x-4'>
-                        <div className=' w-32 flex justify-around items-center cursor-pointer' onClick={() => deleteHallTicket(hallTicket)}>
-                          <img src='./delete.png' alt="remove" className='w-5 h-5 ' />
-                          <h1>Delete Link</h1>
+                  <tbody>
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                      <th scope="row" class="w-24 px-6 py-4 text-center font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <h1>{count++}</h1>
+                      </th>
+                      <th scope="row" class="w-20 px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        {hallTicket.dept}
+                      </th>
+                      <td class="px-6 py-4">
+                        <h1 className='truncate w-56'>{hallTicket.link}</h1>
+
+                      </td>
+                      <td class="px-6 py-4 ">
+                        {hallTicket.linkName}
+                      </td>
+                      <td class="px-6 py-4">
+                        <div className='flex justify-around items-center w-[250px] space-x-4'>
+                          <div className=' w-32 flex justify-around items-center cursor-pointer' onClick={() => deleteHallTicket(hallTicket)}>
+                            <img src='./delete.png' alt="remove" className='w-5 h-5 ' />
+                            <h1>Delete Link</h1>
+                          </div>
+                          <div className=' w-28 flex justify-around items-center cursor-pointer' onClick={() => setModal(true)}>
+                            <img src="./edit.png" alt="edit" className='w-5 h-5' />
+                            <h1>Edit Link</h1>
+                          </div>
                         </div>
-                        <div className=' w-28 flex justify-around items-center cursor-pointer' onClick={() => setModal(true)}>
-                          <img src="./edit.png" alt="edit" className='w-5 h-5' />
-                          <h1>Edit Link</h1>
-                        </div>
-                      </div>
-                    </div>
-
-                  </div>
-                </div>
-              ))
-            }
-
-          </div >
+                      </td>
+                    </tr>
+                  </tbody>
+                ))
+              }
+            </table>
+          </div>
 
         </div>
 
