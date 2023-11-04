@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Manrope, Raleway } from 'next/font/google';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
 import { db } from "../firebase"
 import { useRouter } from 'next/navigation';
 import { AuthContext } from '../contexts/AuthContext';
@@ -22,12 +22,15 @@ const manrope = Manrope({
 function HallTickets() {
 
   const [department, setDepartment] = useState("Electronics & Telecommunication")
+  const [editDepartment, setEditDepartment] = useState("Electronics & Telecommunication")
   const [hallTicketsObj, setHallTicketsObj] = useState([])
   const [fetch, setFetch] = useState(false)
   const [link, setLink] = useState()
+  const [editLink, setEditLink] = useState()
   const [linkName, setLinkName] = useState()
+  const [editLinkName, setEditLinkName] = useState()
   const [query, setQuery] = useState("")
-  const [modal, setModal] = useState(false)
+  const [modal, setModal] = useState(null)
 
   const router = useRouter();
 
@@ -92,6 +95,9 @@ function HallTickets() {
   const handleDepartmentDropdown = (event) => {
     setDepartment(event.target.value);
   };
+  const handleEditDepartmentDropdown = (event) => {
+    setEditDepartment(event.target.value);
+  };
 
   const notifySuccess = () => toast.success('Created link successfully', {
     position: "top-right",
@@ -144,6 +150,62 @@ function HallTickets() {
       return;
     }
   }
+  async function updateLink(hallTicket) {
+    const docRef = doc(db, "hallTickets", hallTicket.id);
+
+    if (editLink && editDepartment && editLinkName) {
+
+      try {
+        await updateDoc(docRef, {
+          link: editLink,
+          dept: editDepartment,
+          linkName: editLinkName,
+        });
+
+        notifySuccess('Updated the Link for hall tickets successfully');
+        window.location.reload();
+      } catch (error) {
+        notifyError('Unable to update');
+      }
+    }
+
+    // else if (!editLink && editDepartment && editLinkName) {
+    //   try {
+    //     const docRef = await updateDoc(docRef, {
+    //       link: hallTicket.link,
+    //       dept: editDepartment,
+    //       linkName: editLinkName,
+    //     });
+
+    //     notifySuccess('Updated the Link for hall tickets successfully');
+    //     window.location.reload();
+    //   } catch (error) {
+    //     notifyError('Something went wrong');
+    //   }
+    // }
+    // else if (!link && department) {
+    //   try {
+    //     const docRef = await updateDoc(docRef, {
+    //       link: hallTicket.link,
+    //       dept: editDepartment,
+    //       linkName: editLinkName,
+    //     });
+
+    //     notifySuccess('Updated the Link for hall tickets successfully');
+    //     window.location.reload();
+    //   } catch (error) {
+    //     notifyError('Something went wrong');
+    //   }
+    // }
+
+    else if (editLink && !editDepartment && editLinkName) {
+      notifyError('Missing department');
+    }
+    else {
+      notifyError('Missing Details');
+    }
+  }
+
 
   return (
     <>
@@ -204,9 +266,69 @@ function HallTickets() {
           <div className='w-[400px]'>
             <h1 className={`${raleway.className} text-4xl font-bold`}>Existing Hall Tickets</h1>
           </div>
-          <div class="relative overflow-x-auto mt-10">
+          {
+            modal && (
+              <div className={`${manrope.className} fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center z-50 bg-gray-900 bg-opacity-80 `}>
+                <div className="w-full max-w-2xl bg-white rounded-lg shadow dark:bg-gray-700">
+                  <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                      <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                        Edit Hall Ticket
+                      </h3>
+                      <button onClick={() => setModal(null)} type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                      </button>
+                    </div>
+                    <div className='flex flex-col space-y-5 mb-20 text-white mx-12 my-5'>
+
+                      <h1 className={`${raleway.className} text-lg font-bold`}>Edit Link</h1>
+
+                      <input
+                        onChange={(e) => setEditLink(e.target.value)}
+                        value={editLink}
+                        type="text"
+                        placeholder="https://siesgst.edu.in/"
+                        className="placeholder:text-gray-500  bg-gray-800 px-5 py-2 outline-none border border-gray-800 w-96"
+                      />
+                      <h1 className={`${raleway.className} text-lg font-bold`}>Edit Name of the Link</h1>
+
+                      <input
+                        onChange={(e) => setEditLinkName(e.target.value)}
+                        value={editLinkName}
+                        type="text"
+                        placeholder="sem-5-hall-tickets"
+                        className="placeholder:text-gray-500  bg-gray-800 px-5 py-2 outline-none border border-gray-800 w-96"
+                      />
+                      <h1 className={`${raleway.className} text-lg font-bold`}>Edit Department</h1>
+
+                      <select
+                        value={editDepartment}
+                        onChange={handleEditDepartmentDropdown}
+                        className="block w-96  py-2 px-5 leading-tight focus:outline-none bg-gray-800 cursor-pointer "
+                      >
+                        {departmentList.map((department, index) => (
+                          <option key={index} value={department}>
+                            {department}
+                          </option>
+                        ))}
+                      </select>
+
+                      <div className='flex justify-center items-center w-96 bg-black text-white py-2'>
+                        <button type='submit' onClick={()=> updateLink(modal)}>Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )
+          }
+
+          <div class={`${manrope.className} relative overflow-x-auto mt-10`}>
             <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <thead class="text-md text-gray-700  bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
                   <th scope="col" class="px-6 py-3">
                     Sr. No.
@@ -249,7 +371,7 @@ function HallTickets() {
                             <img src='./delete.png' alt="remove" className='w-5 h-5 ' />
                             <h1>Delete Link</h1>
                           </div>
-                          <div className=' w-28 flex justify-around items-center cursor-pointer' onClick={() => setModal(true)}>
+                          <div className=' w-28 flex justify-around items-center cursor-pointer' onClick={()=> setModal(hallTicket)}>
                             <img src="./edit.png" alt="edit" className='w-5 h-5' />
                             <h1>Edit Link</h1>
                           </div>
