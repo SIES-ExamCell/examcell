@@ -7,7 +7,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { addDoc, collection, deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
 import { db } from "../firebase"
 import { useRouter } from 'next/navigation';
-import { AuthContext } from '../contexts/AuthContext';
 
 
 const raleway = Raleway({
@@ -22,7 +21,7 @@ const manrope = Manrope({
 function HallTickets() {
 
   const [department, setDepartment] = useState("Electronics & Telecommunication")
-  const [editDepartment, setEditDepartment] = useState("Electronics & Telecommunication")
+  const [editDepartment, setEditDepartment] = useState()
   const [hallTicketsObj, setHallTicketsObj] = useState([])
   const [fetch, setFetch] = useState(false)
   const [link, setLink] = useState()
@@ -153,58 +152,20 @@ function HallTickets() {
   async function updateLink(hallTicket) {
     const docRef = doc(db, "hallTickets", hallTicket.id);
 
-    if (editLink && editDepartment && editLinkName) {
+    try {
+      await updateDoc(docRef, {
+        link: editLink ? editLink : hallTicket.link,
+        dept: editDepartment ? editDepartment : hallTicket.dept,
+        linkName: editLinkName ? editLinkName : hallTicket.linkName,
+      });
 
-      try {
-        await updateDoc(docRef, {
-          link: editLink,
-          dept: editDepartment,
-          linkName: editLinkName,
-        });
-
-        notifySuccess('Updated the Link for hall tickets successfully');
-        window.location.reload();
-      } catch (error) {
-        notifyError('Unable to update');
-      }
-    }
-
-    // else if (!editLink && editDepartment && editLinkName) {
-    //   try {
-    //     const docRef = await updateDoc(docRef, {
-    //       link: hallTicket.link,
-    //       dept: editDepartment,
-    //       linkName: editLinkName,
-    //     });
-
-    //     notifySuccess('Updated the Link for hall tickets successfully');
-    //     window.location.reload();
-    //   } catch (error) {
-    //     notifyError('Something went wrong');
-    //   }
-    // }
-    // else if (!link && department) {
-    //   try {
-    //     const docRef = await updateDoc(docRef, {
-    //       link: hallTicket.link,
-    //       dept: editDepartment,
-    //       linkName: editLinkName,
-    //     });
-
-    //     notifySuccess('Updated the Link for hall tickets successfully');
-    //     window.location.reload();
-    //   } catch (error) {
-    //     notifyError('Something went wrong');
-    //   }
-    // }
-
-    else if (editLink && !editDepartment && editLinkName) {
-      notifyError('Missing department');
-    }
-    else {
-      notifyError('Missing Details');
+      notifySuccess('Updated the Link for hall tickets successfully');
+      window.location.reload();
+    } catch (error) {
+      notifyError('Unable to update');
     }
   }
+
 
 
   return (
@@ -259,8 +220,12 @@ function HallTickets() {
               ))}
             </select>
 
-            <div className='flex justify-center items-center w-96 bg-black text-white py-2'>
-              <button type='submit' onClick={addLinks}>Submit</button>
+            <div type="submit" onClick={addLinks} class=" cursor-pointer w-96 relative inline-flex items-center px-12 py-2 overflow-hidden text-lg font-medium text-black border-2 border-black rounded-full hover:text-white group hover:bg-gray-600">
+              <span class="absolute left-0 block w-full h-0 transition-all bg-black opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+              <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </span>
+              <span class="relative">Submit</span>
             </div>
           </div>
           <div className='w-[400px]'>
@@ -316,9 +281,15 @@ function HallTickets() {
                         ))}
                       </select>
 
-                      <div className='flex justify-center items-center w-96 bg-black text-white py-2'>
-                        <button type='submit' onClick={()=> updateLink(modal)}>Submit</button>
+                      <div type="submit" onClick={() => updateLink(modal)} class=" cursor-pointer w-96 relative inline-flex items-center px-12 py-2 overflow-hidden text-lg font-medium text-black border-2 border-black rounded-full hover:text-white group hover:bg-gray-600">
+                        <span class="absolute left-0 block w-full h-0 transition-all bg-black opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+                        <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </span>
+                        <span class="relative">Submit</span>
                       </div>
+
+
                     </div>
                   </div>
                 </div>
@@ -371,7 +342,7 @@ function HallTickets() {
                             <img src='./delete.png' alt="remove" className='w-5 h-5 ' />
                             <h1>Delete Link</h1>
                           </div>
-                          <div className=' w-28 flex justify-around items-center cursor-pointer' onClick={()=> setModal(hallTicket)}>
+                          <div className=' w-28 flex justify-around items-center cursor-pointer' onClick={() => setModal(hallTicket)}>
                             <img src="./edit.png" alt="edit" className='w-5 h-5' />
                             <h1>Edit Link</h1>
                           </div>
