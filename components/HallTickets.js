@@ -28,7 +28,6 @@ function HallTickets() {
   const [editLink, setEditLink] = useState()
   const [linkName, setLinkName] = useState()
   const [editLinkName, setEditLinkName] = useState()
-  const [query, setQuery] = useState("")
   const [modal, setModal] = useState(null)
 
   const router = useRouter();
@@ -186,6 +185,7 @@ function HallTickets() {
 
       <div className='w-screen  flex mx-20 my-20'>
         <div className='flex flex-col'>
+
           <div className='flex flex-col space-y-5 mb-20'>
 
             <h1 className={`${raleway.className} text-4xl font-bold`}>Create Links for Hall Tickets</h1>
@@ -228,6 +228,10 @@ function HallTickets() {
               <span class="relative">Submit</span>
             </div>
           </div>
+
+
+
+
           <div className='w-[400px]'>
             <h1 className={`${raleway.className} text-4xl font-bold`}>Existing Hall Tickets</h1>
           </div>

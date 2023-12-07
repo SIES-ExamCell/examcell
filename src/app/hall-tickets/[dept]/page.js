@@ -7,6 +7,7 @@ import Navbar from '../../../../components/Navbar';
 import { useRouter } from 'next/navigation';
 import { addDoc, collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { db } from '../../../../firebase';
+import { useSearchParams } from 'next/navigation'
 
 const raleway = Raleway({
   weight: ['400', '700'],
@@ -18,9 +19,13 @@ const manrope = Manrope({
 });
 function DepartmentProps({ params }) {
   const [hallTicketsObj, setHallTicketsObj] = useState([]);
+  const [tabHallTickets, setTabHallTickets] = useState([]);
   const [fetch, setFetch] = useState(true);
+  const searchParams = useSearchParams()
 
+  const tabName = searchParams.get('tabName')
   const router = useRouter();
+
   const departmentDictionary = {
     'PPT': 'Printing & Packaging Technology',
     'CE': 'Computer Engineering',
@@ -33,8 +38,10 @@ function DepartmentProps({ params }) {
     'IOT': 'IOT',
   };
 
+
+  // Temporary use only 
   useEffect(() => {
-    if (fetch && router.pathname !== '/notices') {
+    if (fetch) {
       const fetchHallTicketsObj = async () => {
         const querySnapshot = await getDocs(collection(db, 'hallTickets'));
         const fetchedHallTickets = [];
@@ -44,9 +51,32 @@ function DepartmentProps({ params }) {
         });
 
         setHallTicketsObj(fetchedHallTickets);
+
       };
 
       fetchHallTicketsObj();
+    }
+  }, [fetch, router.pathname]);
+
+
+  // Dynamic fetching wrt to tabs 
+  useEffect(() => {
+    if (fetch && tabName) {
+      const fetchHallTicketsObj = async () => {
+        const querySnapshot = await getDocs(collection(db, "hallTicketTabs", "4J7L5f33uUNUg8M04dMP", tabName));
+        const fetchedHallTickets = [];
+
+        querySnapshot.forEach((doc) => {
+          fetchedHallTickets.push({ id: doc.id, link: doc.data().link, linkName: doc.data().linkName, dept: doc.data().dept });
+          console.log(doc.data())
+
+        });
+
+        setTabHallTickets(fetchedHallTickets);
+        setFetch(true);
+      }
+      fetchHallTicketsObj();
+
     }
   }, [fetch, router.pathname]);
 
@@ -57,19 +87,52 @@ function DepartmentProps({ params }) {
         <div className={`${raleway.className} `}>
           <h1 className='text-2xl lg:text-4xl font-semibold tracking-wide '>{departmentDictionary[params.dept]}</h1>
         </div>
-        {hallTicketsObj.map((hallTicket) => (
-          hallTicket.dept === departmentDictionary[params.dept] && (
-            <div className={`${manrope.className} mt-5`} key={hallTicket.id}>
-              <a href={hallTicket.link} className='text-lg hover:cursor-pointer hover:underline text-blue-600'>{hallTicket.linkName || hallTicket.link}</a>
-            </div>
-          )
-        ))}
 
-        {hallTicketsObj.length === 0 && (
-          <div className={`${manrope.className} mt-5`}>
-            <h1 className='text-lg hover:cursor-pointer hover:underline text-blue-600'>No Hall Tickets Found</h1>
-          </div>
-        )}
+        {
+          tabName ?
+            <>
+
+              {
+                tabHallTickets ?
+
+                  tabHallTickets.map((hallTicket) => (
+                    hallTicket.dept === departmentDictionary[params.dept] && (
+                      <div className={`${manrope.className} mt-5`} key={hallTicket.id}>
+                        <a href={hallTicket.link} className='text-lg hover:cursor-pointer hover:underline text-blue-600'>{hallTicket.linkName || hallTicket.link}</a>
+                      </div>
+                    )
+                  ))
+
+                  :
+                  tabHallTickets.dept != params.dept && (
+                    <div className={`${manrope.className} mt-5`}>
+                      <h1 className='text-lg hover:cursor-pointer hover:underline text-blue-600'>No Hall Tickets Found</h1>
+                    </div>
+                  )
+              }
+            </>
+
+            :
+
+            <>
+
+              {hallTicketsObj.map((hallTicket) => (
+                hallTicket.dept === departmentDictionary[params.dept] && (
+                  <div className={`${manrope.className} mt-5`} key={hallTicket.id}>
+                    <a href={hallTicket.link} className='text-lg hover:cursor-pointer hover:underline text-blue-600'>{hallTicket.linkName || hallTicket.link}</a>
+                  </div>
+                )
+              ))}
+
+              {hallTicketsObj.length === 0 && (
+                <div className={`${manrope.className} mt-5`}>
+                  <h1 className='text-lg hover:cursor-pointer hover:underline text-blue-600'>No Hall Tickets Found</h1>
+                </div>
+              )}
+
+            </>
+
+        }
 
       </motion.div>
     </>

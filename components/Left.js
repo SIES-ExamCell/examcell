@@ -56,6 +56,9 @@ function Left() {
                         <img src="./hall-tickets.png" alt="hall-tickets" className='w-6 h-6 object-contain' />
                     </div>
                     <div className='mt-2 mr-4 hover:cursor-pointer'>
+                        <img src="./hall-tickets.png" alt="hall-tickets" className='w-6 h-6 object-contain' />
+                    </div>
+                    <div className='mt-2 mr-4 hover:cursor-pointer'>
                         <img src="./settings.png" alt="Settings" className='w-6 h-6 object-contain' />
                     </div>
                     <div className='mt-2 mr-4 hover:cursor-pointer'>
@@ -92,6 +95,11 @@ function Left() {
                     <Link href="/create-hall-tickets" >
                         <div className='hover:cursor-pointer'>
                             <h1>Hall Tickets</h1>
+                        </div>
+                    </Link>
+                    <Link href="/create-hall-tickets-beta" >
+                        <div className='hover:cursor-pointer'>
+                            <h1>Hall Tickets (Beta)</h1>
                         </div>
                     </Link>
                     <Link href="/settings" >
