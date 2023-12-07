@@ -49,15 +49,15 @@ function First() {
                 close || (
                     <div className='flex justify-center items-center md:p-0 md:mt-10'>
 
-                     
-                            <section className='bg-[#fca5a5]  w-screen py-4 px-10 h-auto flex justify-around items-center space-x-6'>
-                                {bannersObj.length > 0 && (
-                                    <h1 className={`${manrope.className} text-xl text-left md:text-center`}>
-                                        Notice: {bannersObj[0].banner}
-                                    </h1>
-                                )}
 
-                                       {/* Close icon */}
+                        <section className='bg-[#fca5a5] md:rounded-lg w-screen md:w-auto py-4 px-10 h-auto flex justify-around md:justify-center items-center space-x-6'>
+                            {bannersObj.length > 0 && (
+                                <h1 className={`${manrope.className} text-xl text-left md:text-center`}>
+                                    Notice: {bannersObj[0].banner}
+                                </h1>
+                            )}
+
+                            {/* Close icon */}
                             <Image
                                 src="/close.png"
                                 width={15}
@@ -67,7 +67,7 @@ function First() {
                                 onClick={() => setClose(true)}
                             />
 
-                            </section >
+                        </section >
 
                     </div >
                 )
