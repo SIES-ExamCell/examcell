@@ -120,6 +120,9 @@ function page() {
 
 
 
+
+
+
   return (
     <>
       <Navbar />
@@ -144,10 +147,6 @@ function page() {
             <div className='flex justify-between items-center'>
               <h1 className='font-normal text-sm text-right ml-56 text-gray-500'>Forgot your Password?</h1>
             </div>
-            {/* <div disabled={!usernameRef || !passwordRef} type='submit' onClick={()=> signIn('credentials',{username, password, redirect: true, callbackUrl: '/'} )} className='flex justify-center items-center w-96 bg-black text-white py-2'> */}
-            {/* <div disabled={!username || !password} type='submit' onClick={signIn} className='flex justify-center  items-center w-96 bg-black text-white py-2'>
-              <h1>Sign In</h1>
-            </div> */}
 
             <div disabled={!username || !password} type="submit" onClick={signIn} class="cursor-pointer relative inline-flex items-center px-12 py-3 overflow-hidden text-lg font-medium text-black border-2 border-black rounded-full hover:text-white group hover:bg-gray-50 w-96 mx-auto">
               <span class="absolute left-0 block w-full h-0 transition-all bg-black opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>

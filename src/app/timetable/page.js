@@ -1,11 +1,14 @@
 "use client"
 
-import React from 'react'
-import { motion } from "framer-motion"
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 import { Manrope, Raleway } from 'next/font/google';
-import Image from 'next/image';
 import Navbar from '../../../components/Navbar';
-
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../../firebase';
+import Image from 'next/image';
 
 const raleway = Raleway({
     weight: ['400', '700'],
@@ -15,7 +18,36 @@ const manrope = Manrope({
     weight: ['400', '700'],
     subsets: ['latin'],
 });
+
 function page() {
+
+    const router = useRouter();
+    const [fetch, setFetch] = useState(false)
+    const [selectedTab, setSelectedTab] = useState(null)
+
+    const departmentList = ['PPT', 'CE', 'IT', 'ECS', 'EXTC', 'AIDS', 'AIML', 'MECH', 'IOT'];
+
+    const [tabsObj, setTabsObj] = useState([])
+
+
+    useEffect(() => {
+        if (!fetch) {
+            const fetchTimetableTabsObj = async () => {
+                const querySnapshot = await getDocs(collection(db, "timetableTabs"));
+                const fetchedTimetableTabs = [];
+
+                querySnapshot.forEach((doc) => {
+                    fetchedTimetableTabs.push({ id: doc.id, name: doc.data().name, selectedTab: false });
+                });
+
+                setTabsObj(fetchedTimetableTabs);
+                setFetch(true);
+            }
+
+            fetchTimetableTabsObj();
+        }
+    }, [fetch]);
+
     return (
         <>
             <Navbar />
@@ -23,128 +55,64 @@ function page() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.7 }}
-                className='mx-10 md:mx-28 mt-20'>
+                className="mx-10 lg:mx-28 mt-20 mb-20"
+            >
+          
 
-                <div className={`${manrope.className} text-center `}>
-                    <h1 className=' text-2xl  lg:text-4xl font-semibold tracking-wide p-10'>Launching soon...</h1>
+                <div className={`${manrope.className} text-center mt-10`}>
+                    <h1 className="text-2xl lg:text-4xl font-semibold tracking-wide text-red-600">
+                        Site under maintenance (Don't access the below tabs)
+                    </h1>
                 </div>
-{/* 
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-10 my-20">
-                    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-900 dark:text-gray-700">
-                            <tr>
-                                <th scope="col" class="px-6 py-3">
-                                    Department
-                                </th>
-                                <th scope="col" class="px-6 py-3">
-                                    Link to download
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Computer Engineering
-                                </th>
-                                <td class="px-6 py-4 hover:cursor-pointer text-blue-600 hover:underline">
-                                    CE SEM III-C SCHEME-R19
-                                </td>
+                {tabsObj.map((tab) => (
+                    <>
+                        <div className={`${manrope.className} flex justify-center items-center space-x-6 text-center mt-10 py-8 md:px-20 md:py-10 xl:px-44 xl:py-12  border border-gray-800 rounded-lg shadow-lg hover:cursor-pointer`} onClick={() => {
+                            tab.selectedTab == true ? tab.selectedTab = false : tab.selectedTab = true;
+                            selectedTab ? setSelectedTab(null) : setSelectedTab(tab.name)
+                        }}>
+                            <h1 className="text-2xl lg:text-4xl font-semibold tracking-wide">
+                                {tab.name}
+                            </h1>
 
-                            </tr>
-                            <tr class="border-b bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Electronics & Telecommunication
+                            <div className=''>
+                                <Image
+                                    src="/down.png"
+                                    width={30}
+                                    height={30}
+                                    alt="down icon"
+                                    className='object-contain hover:cursor-pointer'
+                                />
+                            </div>
 
-                                </th>
-                                <td class="px-6 py-4 hover:cursor-pointer text-blue-600 hover:underline">
-                                    EXTC SEM III-C SCHEME-R19
-                                </td>
-
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Information Technology
-
-                                </th>
-                                <td class="px-6 py-4 hover:cursor-pointer text-blue-600 hover:underline">
-                                    IT SEM III-C SCHEME-R19
-                                </td>
-
-                            </tr>
-                            <tr class="border-b bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Electronics & Computer Science
-
-                                </th>
-                                <td class="px-6 py-4 hover:cursor-pointer text-blue-600 hover:underline">
-                                    ECS SEM III-C SCHEME-R19
-                                </td>
-
-                            </tr>
-                            <tr class="border-b bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Mechanical Engineering
+                        </div>
+                        {
+                            (tab.selectedTab === false) && (
+                                <div className="mt-16 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-10">
+                                    {departmentList.map((department) => (
+                                        <Link
+                                            key={department}
+                                            href={{
+                                                pathname: `/timetable/${department}`,
+                                                query: { dept: department, tabName: tab.name },
+                                            }}
+                                            className="px-12 py-4 lg:px-0 lg:py-0 flex justify-center items-center lg:w-[200px] lg:h-[200px] shadow-2xl rounded-xl bg-[#60a5fa] hover:cursor-pointer transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-300"
+                                        >
+                                            <h1 className={`${manrope.className} text-center lg:text-3xl text-2xl`}>
+                                                {department}
+                                            </h1>
+                                        </Link>
+                                    )
 
 
-                                </th>
-                                <td class="px-6 py-4 hover:cursor-pointer text-blue-600 hover:underline">
-                                    MECH SEM III-C SCHEME-R19
-                                </td>
-
-                            </tr>
-                            <tr class="border-b bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    CSE IOT
-
-                                </th>
-                                <td class="px-6 py-4 hover:cursor-pointer text-blue-600 hover:underline">
-                                    CSE IOT SEM III-C SCHEME-R19
-                                </td>
-
-                            </tr>
-                            <tr class="border-b bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    CSE AIDS
-
-                                </th>
-                                <td class="px-6 py-4 hover:cursor-pointer text-blue-600 hover:underline">
-                                    CSE AIDS SEM III-C SCHEME-R19
-                                </td>
-
-                            </tr>
-                            <tr class="border-b bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    CSE AIML
-
-                                </th>
-                                <td class="px-6 py-4 hover:cursor-pointer text-blue-600 hover:underline">
-                                    CSE AIML SEM III-C SCHEME-R19
-                                </td>
-
-                            </tr>
-                            <tr class="border-b bg-gray-50 dark:bg-gray-900 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    FE
-
-                                </th>
-                                <td class="px-6 py-4 hover:cursor-pointer text-blue-600 hover:underline">
-                                    FE SEM III-C SCHEME-R19
-                                </td>
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div> */}
-
-
-
-
-            </motion.div>
+                                    )}
+                                </div>
+                            )
+                        }
+                    </>
+                ))}
+            </motion.div >
         </>
-
-
-    )
+    );
 }
 
-export default page
+export default page;
