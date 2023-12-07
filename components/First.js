@@ -47,25 +47,28 @@ function First() {
             {/* Homepage Dismissable notification */}
             {
                 close || (
-                    <div className='flex justify-center items-center p-10 md:p-0 md:mt-10'>
-                        <section className='bg-[#fca5a5] w-auto max-w-[700px] py-4 px-10 h-auto rounded-xl flex space-x-6'>
+                    <div className='flex justify-center items-center md:p-0 md:mt-10'>
 
+                     
+                            <section className='bg-[#fca5a5]  w-screen py-4 px-10 h-auto flex justify-around items-center space-x-6'>
+                                {bannersObj.length > 0 && (
+                                    <h1 className={`${manrope.className} text-xl text-left md:text-center`}>
+                                        Notice: {bannersObj[0].banner}
+                                    </h1>
+                                )}
 
-                            {bannersObj.length > 0 && (
-                                <h1 className={`${manrope.className} text-xl text-left md:text-center`}>
-                                    Notice: {bannersObj[0].banner}
-                                </h1>
-                            )}
-                            {/* Close icon */}
+                                       {/* Close icon */}
                             <Image
                                 src="/close.png"
                                 width={15}
                                 height={15}
                                 alt="close icon"
-                                className='object-contain hover:cursor-pointer'
+                                className='object-contain hover:cursor-pointer ml-72'
                                 onClick={() => setClose(true)}
                             />
-                        </section >
+
+                            </section >
+
                     </div >
                 )
 
