@@ -25,7 +25,7 @@ function page() {
     const [fetch, setFetch] = useState(false)
     const [selectedTab, setSelectedTab] = useState(null)
 
-    const departmentList = ['PPT', 'CE', 'IT', 'ECS', 'EXTC', 'AIDS', 'AIML', 'MECH', 'IOT'];
+    const departmentList = ['PPT', 'CE', 'IT', 'ECS', 'EXTC', 'AIDS', 'AIML', 'MECH', 'IOT', 'FE', 'PG'];
 
     const [tabsObj, setTabsObj] = useState([])
 

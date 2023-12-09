@@ -54,7 +54,8 @@ function ExamTimeTable() {
         "Electronics & Computer Science",
         "IOT",
         "Artificial Intelligence and Data science",
-        "Artificial Intelligence and Machine Learning"
+        "Artificial Intelligence and Machine Learning",
+        "First Year", "Post Graduation"
     ]
 
     const handleEditDepartmentDropdown = (event) => {
@@ -165,36 +166,36 @@ function ExamTimeTable() {
 
     const createTimetable = async () => {
         if (createTimetableLink && createTimetableDepartment && createTimetableLinkName && currentTab) {
-    
-          try {
-            const docRef = await addDoc(collection(db, "timetableTabs", "P8pKi38JoAJj03O6C9Me", currentTab), {
-              link: createTimetableLink,
-              dept: createTimetableDepartment,
-              linkName: createTimetableLinkName,
-              tabName: currentTab
-            });
-    
-            notifySuccess('Created Link for Timetable successfully');
-            setCreateTimetableLink('');
-            setCreateTimetableDepartment('');
-            setCreateTimetableLinkName(null);
-            window.location.reload();
-          } catch (error) {
-            notifyError('Something went wrong');
-          }
+
+            try {
+                const docRef = await addDoc(collection(db, "timetableTabs", "P8pKi38JoAJj03O6C9Me", currentTab), {
+                    link: createTimetableLink,
+                    dept: createTimetableDepartment,
+                    linkName: createTimetableLinkName,
+                    tabName: currentTab
+                });
+
+                notifySuccess('Created Link for Timetable successfully');
+                setCreateTimetableLink('');
+                setCreateTimetableDepartment('');
+                setCreateTimetableLinkName(null);
+                window.location.reload();
+            } catch (error) {
+                notifyError('Something went wrong');
+            }
         }
-    
+
         else if (!createTimetableLink && createTimetableDepartment) {
-          notifyError('Missing link');
+            notifyError('Missing link');
         }
         else if (createTimetableLink && !createTimetableDepartment) {
-          notifyError('Missing department');
+            notifyError('Missing department');
         }
         else {
-          notifyError('Missing Details');
+            notifyError('Missing Details');
         }
-    
-      };
+
+    };
     async function deleteTab(tab) {
         var answer = window.confirm("Delete Timetable Tab? [Note: This step is irreversible]");
         if (answer) {
@@ -349,7 +350,7 @@ function ExamTimeTable() {
                                     </div>
                                     <div className='flex flex-col space-y-5 mb-20 text-black mx-12 my-5'>
 
-                                   
+
                                         <h1 className={`${manrope.className} text-lg font-bold`}>Enter link name</h1>
 
                                         <input

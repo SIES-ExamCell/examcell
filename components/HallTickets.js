@@ -54,7 +54,8 @@ function HallTickets() {
     "Electronics & Computer Science",
     "IOT",
     "Artificial Intelligence and Data science",
-    "Artificial Intelligence and Machine Learning"
+    "Artificial Intelligence and Machine Learning",
+    "First Year", "Post Graduation"
   ]
 
   const addLinks = async () => {
