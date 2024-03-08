@@ -31,7 +31,6 @@ function Settings() {
   const [username, setUsername] = useState(null)
   const [password, setPassword] = useState(null)
 
-  const { admin, setAdmin } = useContext(AuthContext);
 
   var isAdmin = ''
   useEffect(() => {

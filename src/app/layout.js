@@ -1,7 +1,6 @@
 "use client"
 
 import './globals.css'
-import SessionProvider from "../../SessionProvider"
 import { useState } from 'react'
 import { AuthContext } from '../../contexts/AuthContext'
 
@@ -16,11 +15,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {/* <SessionProvider> */}
         <AuthContext.Provider value={{ admin, setAdmin }}>
           {children}
         </AuthContext.Provider>
-        {/* </SessionProvider> */}
 
       </body>
     </html>

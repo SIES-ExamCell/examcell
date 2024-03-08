@@ -207,7 +207,6 @@ function EditNotifications() {
         <div className='flex flex-col'>
           <div className='flex flex-col space-y-5 mb-20'>
             <h1 className={`${raleway.className} text-4xl font-bold`}>Create Banner on HomePage</h1>
-
             <input
               onChange={(e) => setBanner(e.target.value)}
               value={banner}

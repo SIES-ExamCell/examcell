@@ -121,7 +121,7 @@ function Results() {
     }
 
     async function createTab() {
-        const docRef = collection(db, 'resultTabs', '0OJemsrBjGJucsJfxL21', tabName);
+        const docRef = collection(db, 'resultTabs', 'mr0W0Hlyty9QLPfH7hLL', tabName);
         const docRef2 = collection(db, 'resultTabs');
 
         if (link && createDepartment && linkName && tabName) {
@@ -154,7 +154,7 @@ function Results() {
 
 
     const fetchResultTabsObj = async (tab) => {
-        const querySnapshot = await getDocs(collection(db, "resultTabs", "0OJemsrBjGJucsJfxL21", tab.name));
+        const querySnapshot = await getDocs(collection(db, "resultTabs", "mr0W0Hlyty9QLPfH7hLL", tab.name));
         const fetchedResults = [];
 
         querySnapshot.forEach((doc) => {
@@ -169,7 +169,7 @@ function Results() {
         if (createResultLink && createResultDepartment && createResultLinkName && currentTab) {
     
           try {
-            const docRef = await addDoc(collection(db, "resultTabs", "0OJemsrBjGJucsJfxL21", currentTab), {
+            const docRef = await addDoc(collection(db, "resultTabs", "mr0W0Hlyty9QLPfH7hLL", currentTab), {
               link: createResultLink,
               dept: createResultDepartment,
               linkName: createResultLinkName,
@@ -201,7 +201,7 @@ function Results() {
         var answer = window.confirm("Delete Result Tab? [Note: This step is irreversible]");
         if (answer) {
             // Query all documents in the collection
-            const querySnapshot = await getDocs(collection(db, "resultTabs", "0OJemsrBjGJucsJfxL21", tab.name));
+            const querySnapshot = await getDocs(collection(db, "resultTabs", "mr0W0Hlyty9QLPfH7hLL", tab.name));
 
             // Delete each document
             const deletePromises = querySnapshot.docs.map(async (doc) => {
@@ -235,7 +235,7 @@ function Results() {
     async function deleteResult(result) {
         var answer = window.confirm("Delete Link for Result?");
         if (answer) {
-            await deleteDoc(doc(db, "resultTabs", "0OJemsrBjGJucsJfxL21", currentTab, result.id));
+            await deleteDoc(doc(db, "resultTabs", "mr0W0Hlyty9QLPfH7hLL", currentTab, result.id));
             window.location.reload();
         }
         else {
@@ -243,7 +243,7 @@ function Results() {
         }
     }
     async function updateLink(result) {
-        const docRef = doc(db, "resultTabs", "0OJemsrBjGJucsJfxL21", currentTab, result.id);
+        const docRef = doc(db, "resultTabs", "mr0W0Hlyty9QLPfH7hLL", currentTab, result.id);
 
 
         try {

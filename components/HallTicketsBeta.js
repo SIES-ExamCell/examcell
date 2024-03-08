@@ -121,7 +121,7 @@ function HallTicketsBeta() {
     }
 
     async function createTab() {
-        const docRef = collection(db, 'hallTicketTabs', '4J7L5f33uUNUg8M04dMP', tabName);
+        const docRef = collection(db, 'hallTicketTabs', 'ZvZgZFNnw6FcKU7Kip6f', tabName);
         const docRef2 = collection(db, 'hallTicketTabs');
 
         if (link && createDepartment && linkName && tabName) {
@@ -154,7 +154,7 @@ function HallTicketsBeta() {
 
 
     const fetchHallTicketsObj = async (tab) => {
-        const querySnapshot = await getDocs(collection(db, "hallTicketTabs", "4J7L5f33uUNUg8M04dMP", tab.name));
+        const querySnapshot = await getDocs(collection(db, "hallTicketTabs", "ZvZgZFNnw6FcKU7Kip6f", tab.name));
         const fetchedHallTickets = [];
 
         querySnapshot.forEach((doc) => {
@@ -169,7 +169,7 @@ function HallTicketsBeta() {
         if (createHallTicketLink && createHallTicketDepartment && createHallTicketLinkName && currentTab) {
     
           try {
-            const docRef = await addDoc(collection(db, "hallTicketTabs", "4J7L5f33uUNUg8M04dMP", currentTab), {
+            const docRef = await addDoc(collection(db, "hallTicketTabs", "ZvZgZFNnw6FcKU7Kip6f", currentTab), {
               link: createHallTicketLink,
               dept: createHallTicketDepartment,
               linkName: createHallTicketLinkName,
@@ -201,7 +201,7 @@ function HallTicketsBeta() {
         var answer = window.confirm("Delete Hall Ticket Tab? [Note: This step is irreversible]");
         if (answer) {
             // Query all documents in the collection
-            const querySnapshot = await getDocs(collection(db, "hallTicketTabs", "4J7L5f33uUNUg8M04dMP", tab.name));
+            const querySnapshot = await getDocs(collection(db, "hallTicketTabs", "ZvZgZFNnw6FcKU7Kip6f", tab.name));
 
             // Delete each document
             const deletePromises = querySnapshot.docs.map(async (doc) => {
@@ -235,7 +235,7 @@ function HallTicketsBeta() {
     async function deleteHallTicket(hallTicket) {
         var answer = window.confirm("Delete Link for Hall Ticket?");
         if (answer) {
-            await deleteDoc(doc(db, "hallTicketTabs", "4J7L5f33uUNUg8M04dMP", currentTab, hallTicket.id));
+            await deleteDoc(doc(db, "hallTicketTabs", "ZvZgZFNnw6FcKU7Kip6f", currentTab, hallTicket.id));
             window.location.reload();
         }
         else {
@@ -243,7 +243,7 @@ function HallTicketsBeta() {
         }
     }
     async function updateLink(hallTicket) {
-        const docRef = doc(db, "hallTicketTabs", "4J7L5f33uUNUg8M04dMP", currentTab, hallTicket.id);
+        const docRef = doc(db, "hallTicketTabs", "ZvZgZFNnw6FcKU7Kip6f", currentTab, hallTicket.id);
 
 
         try {

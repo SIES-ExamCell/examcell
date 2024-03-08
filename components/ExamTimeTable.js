@@ -120,7 +120,7 @@ function ExamTimeTable() {
     }
 
     async function createTab() {
-        const docRef = collection(db, 'timetableTabs', 'P8pKi38JoAJj03O6C9Me', tabName);
+        const docRef = collection(db, 'timetableTabs', 'YVDvOwTLlkCDDuxblOBg', tabName);
         const docRef2 = collection(db, 'timetableTabs');
 
         if (link && createDepartment && linkName && tabName) {
@@ -153,7 +153,7 @@ function ExamTimeTable() {
 
 
     const fetchTimetableObj = async (tab) => {
-        const querySnapshot = await getDocs(collection(db, "timetableTabs", "P8pKi38JoAJj03O6C9Me", tab.name));
+        const querySnapshot = await getDocs(collection(db, "timetableTabs", "YVDvOwTLlkCDDuxblOBg", tab.name));
         const fetchedTimetable = [];
 
         querySnapshot.forEach((doc) => {
@@ -168,7 +168,7 @@ function ExamTimeTable() {
         if (createTimetableLink && createTimetableDepartment && createTimetableLinkName && currentTab) {
 
             try {
-                const docRef = await addDoc(collection(db, "timetableTabs", "P8pKi38JoAJj03O6C9Me", currentTab), {
+                const docRef = await addDoc(collection(db, "timetableTabs", "YVDvOwTLlkCDDuxblOBg", currentTab), {
                     link: createTimetableLink,
                     dept: createTimetableDepartment,
                     linkName: createTimetableLinkName,
@@ -200,7 +200,7 @@ function ExamTimeTable() {
         var answer = window.confirm("Delete Timetable Tab? [Note: This step is irreversible]");
         if (answer) {
             // Query all documents in the collection
-            const querySnapshot = await getDocs(collection(db, "timetableTabs", "P8pKi38JoAJj03O6C9Me", tab.name));
+            const querySnapshot = await getDocs(collection(db, "timetableTabs", "YVDvOwTLlkCDDuxblOBg", tab.name));
 
             // Delete each document
             const deletePromises = querySnapshot.docs.map(async (doc) => {
@@ -234,7 +234,7 @@ function ExamTimeTable() {
     async function deleteTimetable(timetable) {
         var answer = window.confirm("Delete Link for Timetable?");
         if (answer) {
-            await deleteDoc(doc(db, "timetableTabs", "P8pKi38JoAJj03O6C9Me", currentTab, timetable.id));
+            await deleteDoc(doc(db, "timetableTabs", "YVDvOwTLlkCDDuxblOBg", currentTab, timetable.id));
             window.location.reload();
         }
         else {
@@ -242,7 +242,7 @@ function ExamTimeTable() {
         }
     }
     async function updateLink(timetable) {
-        const docRef = doc(db, "timetableTabs", "P8pKi38JoAJj03O6C9Me", currentTab, timetable.id);
+        const docRef = doc(db, "timetableTabs", "YVDvOwTLlkCDDuxblOBg", currentTab, timetable.id);
 
 
         try {
