@@ -46,7 +46,7 @@ function DepartmentProps({ params }) {
   useEffect(() => {
     if (fetch && tabName) {
       const fetchTimetableObj = async () => {
-        const querySnapshot = await getDocs(collection(db, "timetableTabs", "P8pKi38JoAJj03O6C9Me", tabName));
+        const querySnapshot = await getDocs(collection(db, "timetableTabs", "YVDvOwTLlkCDDuxblOBg", tabName));
         const fetchedTimetable = [];
 
         querySnapshot.forEach((doc) => {

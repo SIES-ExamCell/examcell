@@ -97,7 +97,7 @@ function Settings() {
 
 
   async function updateUser() {
-    const docRef = doc(db, "admin", "o5S757766coPZFBzjTf3");
+    const docRef = doc(db, "admin", "6wA6JFaRHteM7ZKcSNwm");
 
     try {
       await updateDoc(docRef, {

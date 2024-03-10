@@ -45,7 +45,7 @@ function DepartmentProps({ params }) {
   useEffect(() => {
     if (fetch && tabName) {
       const fetchResultObj = async () => {
-        const querySnapshot = await getDocs(collection(db, "resultTabs", "0OJemsrBjGJucsJfxL21", tabName));
+        const querySnapshot = await getDocs(collection(db, "resultTabs", "mr0W0Hlyty9QLPfH7hLL", tabName));
         const fetchedResult = [];
 
         querySnapshot.forEach((doc) => {

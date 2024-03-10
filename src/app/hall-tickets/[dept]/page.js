@@ -63,7 +63,7 @@ function DepartmentProps({ params }) {
   useEffect(() => {
     if (fetch && tabName) {
       const fetchHallTicketsObj = async () => {
-        const querySnapshot = await getDocs(collection(db, "hallTicketTabs", "4J7L5f33uUNUg8M04dMP", tabName));
+        const querySnapshot = await getDocs(collection(db, "hallTicketTabs", "ZvZgZFNnw6FcKU7Kip6f", tabName));
         const fetchedHallTickets = [];
 
         querySnapshot.forEach((doc) => {
@@ -87,11 +87,9 @@ function DepartmentProps({ params }) {
         <div className={`${raleway.className} `}>
           <h1 className='text-2xl lg:text-4xl font-semibold tracking-wide '>{departmentDictionary[params.dept]}</h1>
         </div>
-
         {
           tabName ?
             <>
-
               {
                 tabHallTickets ?
 
