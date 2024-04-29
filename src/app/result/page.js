@@ -58,11 +58,7 @@ function page() {
                 className="mx-10 lg:mx-28 mt-20 mb-20"
             >
 
-                <div className={`${manrope.className} text-center mt-10`}>
-                    <h1 className="text-2xl lg:text-4xl font-semibold tracking-wide text-red-600">
-                        Site under maintenance (Don't access the below tabs)
-                    </h1>
-                </div>
+       
                 {tabsObj.map((tab) => (
                     <>
                         <div className={`${manrope.className} flex justify-center items-center space-x-6 text-center mt-10 py-8 md:px-20 md:py-10 xl:px-44 xl:py-12  border border-gray-800 rounded-lg shadow-lg hover:cursor-pointer`} onClick={() => {

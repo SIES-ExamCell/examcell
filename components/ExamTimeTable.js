@@ -20,7 +20,6 @@ const manrope = Manrope({
 });
 
 
-
 function ExamTimeTable() {
     var count = 1;
     var timetablecount = 1;
