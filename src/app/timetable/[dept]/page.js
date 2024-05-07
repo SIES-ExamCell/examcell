@@ -38,6 +38,7 @@ function DepartmentProps({ params }) {
     'AIML': 'Artificial Intelligence and Machine Learning',
     'MECH': 'Mechanical Engineering',
     'IOT': 'IOT',
+    'FE': 'First Year',
   };
 
 

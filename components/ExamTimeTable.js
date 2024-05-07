@@ -28,7 +28,7 @@ function ExamTimeTable() {
     const [department, setDepartment] = useState("Electronics & Telecommunication")
     const [createDepartment, setCreateDepartment] = useState()
     // Timetable Modal States
-    const [createTimetableDepartment, setCreateTimetableDepartment] = useState()
+    const [createTimetableDepartment, setCreateTimetableDepartment] = useState("Electronics & Telecommunication")
     const [createTimetableLinkName, setCreateTimetableLinkName] = useState()
     const [createTimetableLink, setCreateTimetableLink] = useState()
 
