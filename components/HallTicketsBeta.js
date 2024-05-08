@@ -29,7 +29,7 @@ function HallTicketsBeta() {
     const [department, setDepartment] = useState("Electronics & Telecommunication")
     const [createDepartment, setCreateDepartment] = useState()
     // Hall Ticket Modal States
-    const [createHallTicketDepartment, setCreateHallTicketDepartment] = useState()
+    const [createHallTicketDepartment, setCreateHallTicketDepartment] = useState("Electronics & Telecommunication")
     const [createHallTicketLinkName, setCreateHallTicketLinkName] = useState()
     const [createHallTicketLink, setCreateHallTicketLink] = useState()
 
